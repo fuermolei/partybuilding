@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+  <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+  <meta name="renderer" content="webkit">
+  <!--国产浏览器高速模式-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="留白" />
+  <!-- 作者 -->
+  <meta name="revised" content="留白.v1, 2019/05/01" />
+  <!-- 定义页面的最新版本 -->
+  <meta name="description" content="网站简介" />
+  <!-- 网站简介 -->
+  <meta name="keywords" content="党,党建,党建系统" />
+  <title>党建工作系统</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/static/layui/css/layui.css}">
+  <script type="text/javascript" th:src="@{/static/framework/jquery-1.11.3.min.js}" ></script>
+  <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+</head>
+<body class="layui-layout-body" style="overflow-y:scroll; overflow-x:scroll;">
+<form class="layui-form layui-form-pane1" action="/PartymemberController/edit" method="post" enctype="multipart/form-data" lay-filter="first" th:object="${TPartymember}">
+  <div class="layui-col-xs6 layui-col-md6">
+    <div class="layui-form-item" style="width: 520px;margin-bottom: -2px;margin-top: 25px">
+      <input id="id" name="id" type="hidden" th:field="*{id}"/>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">姓名</label>
+      <div class="layui-input-block">
+        <input type="text" id="name" name="name" th:field="*{name}" lay-verify="required|title" required placeholder="请输入姓名" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">身份证号</label>
+      <div class="layui-input-block">
+        <input type="text" id="idnumber" name="idnumber" th:field="*{idnumber}" lay-verify="required|title" required placeholder="请输入身份证号" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">性别</label>
+      <div class="layui-input-block">
+        <input type="hidden" id="sex2" name="sex2" th:value="*{sex}">
+        <input type="radio" name="sex" id="man" value="男" title="男">
+        <input type="radio" name="sex" id="woman" value="女" title="女">
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">职务</label>
+      <div class="layui-input-block">
+        <input type="text" id="job" name="job" th:value="*{job}" lay-verify="required|title" required placeholder="请输入职务" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">出生年月</label>
+      <div class="layui-input-block">
+        <input type="text" name="dateofbirth" th:value="*{dateofbirth}" class="layui-input" id="dateofbirth" lay-verify="required|title">
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">联系方式</label>
+      <div class="layui-input-block">
+        <input type="text" id="phone" name="phone" th:field="*{phone}" lay-verify="required|title" required placeholder="请输入联系方式" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">入党时间</label>
+      <div class="layui-input-block">
+        <input type="text" name="joiningpartydata" th:value="*{joiningpartydata}" class="layui-input" id="joiningpartydata" lay-verify="required|title">
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">承诺</label>
+      <div class="layui-input-block">
+        <input type="text" id="promise" name="promise" th:field="*{promise}" placeholder="请输入承诺" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">简介</label>
+      <div class="layui-input-block">
+        <textarea name="briefintroduction" th:field="*{briefintroduction}" placeholder="请输入简介内容" class="layui-textarea"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="layui-col-xs6 layui-col-md6">
+    <div class="layui-form-item" style="width: 520px;margin-bottom: -2px;margin-top: 25px">
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">照片</label>
+      <div class="layui-input-block">
+        <div id="pic" style="width:auto ;height:160px; background:#EEEEEE;">
+          <img style="width:auto;height:160px;" th:src="*{pic}" />
+        </div>
+        <input name="headImage" type="file" id="file" th:src="*{pic}"/>
+        <script>
+          document.getElementById('file').onchange = function() {
+            var imgFile = this.files[0];
+            var fr = new FileReader();
+            fr.onload = function() {
+              document.getElementById('pic').getElementsByTagName('img')[0].src = fr.result;
+            };
+            fr.readAsDataURL(imgFile);
+          };
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">所属支部</label>
+      <div class="layui-input-block">
+        <input type="hidden" id="branchId2" name="branchId2" th:value="*{branchId}">
+        <select name="branchId" lay-filter="interest" id="branchId" th:value="*{branchId}">
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">先锋队</label>
+      <div class="layui-input-block">
+        <input type="hidden" id="vanguardId2" name="vanguardId2" th:value="*{vanguardId}">
+        <select name="vanguardId" lay-filter="interest" id="vanguardId">
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">备注</label>
+      <div class="layui-input-block">
+        <textarea name="remarks" placeholder="请输入备注信息" th:field="*{remarks}" class="layui-textarea"></textarea>
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 360px;">
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="add" id="edit">提交</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+    layui.use(['form','laydate'], function(){
+      var laydate = layui.laydate;
+      var form = layui.form;
+      //单控件
+      laydate.render({
+        elem: '#dateofbirth'
+        //,format: 'yyyy年MM月dd日'
+        //,value: new Date(1989,9,14)
+        ,isInitValue: false
+        ,format: 'yyyyMMdd'
+        ,theme: '#393D49'
+        ,ready: function(date){
+          console.log(date);
+        }
+        ,done: function(value, date, endDate){
+          console.log(value, date, endDate);
+        }
+      });
+      laydate.render({
+        elem: '#joiningpartydata'
+        ,isInitValue: false
+        ,format: 'yyyyMMdd'
+        ,theme: '#393D49'
+        ,trigger: 'click'
+        ,ready: function(date){
+          console.log(date);
+        }
+        ,done: function(value, date, endDate){
+          console.log(value, date, endDate);
+        }
+      });
+      var sex= $("#sex2").val();
+      if(sex=="男"){
+        $("#man").attr("checked","checked");
+      }else{
+        $("#woman").attr("checked","checked");
+      }
+      form.render('radio');
+    });
+    getbranchId();
+    getvanguardId();
+    function getbranchId() {
+      $.ajax({
+        url: '/BranchController/getAll',
+        dataType: "json",
+        type: "POST",
+        async: false,
+        success: function(data) {
+          //后台服务返回数据，重新加载数据
+          if (data.length == 0) {
+            return;
+          }
+          var html = "<option value=''>请选择栏目</option>";
+          $.each(data, function(idx, obj) {
+            html += "<option value='"+obj.id+"'>"+obj.name+"</option>";
+          });
+          $("#branchId").empty().append(html);
+          var op= $("#branchId2").val();
+          $("#branchId option[value='"+op+"']").attr("selected",true);
+        }
+      });
+    }
+    function getvanguardId() {
+      $.ajax({
+        url: '/VanguardController/getAll',
+        dataType: "json",
+        type: "POST",
+        async: false,
+        success: function(data) {
+          //后台服务返回数据，重新加载数据
+          if (data.length == 0) {
+            return;
+          }
+          var html = "<option value=''>请选择栏目</option>";
+          $.each(data, function(idx, obj) {
+            html += "<option value='"+obj.id+"'>"+obj.name+"</option>";
+          });
+          $("#vanguardId").empty().append(html);
+          var op= $("#vanguardId2").val();
+          $("#vanguardId option[value='"+op+"']").attr("selected",true);
+        }
+      });
+    }
+</script>
+</body>
+</html>

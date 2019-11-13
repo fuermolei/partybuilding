@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="留白" />
+		<!-- 作者 -->
+		<meta name="revised" content="留白.v1, 2019/05/01" />
+		<!-- 定义页面的最新版本 -->
+		<meta name="description" content="网站简介" />
+		<!-- 网站简介 -->
+		<meta name="keywords" content="党,党建,党建系统" />
+		<title>党建工作系统</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="shortcut icon" th:href="@{/static/images/favicon.ico}"/>
+		<link rel="bookmark" th:href="@{/static/images/favicon.ico}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/base.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/fonts/iconfont.css}">
+		<script type="text/javascript" th:src="@{/static/framework/jquery-1.11.3.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/static/js/base.js}"></script>
+		<link rel="stylesheet" type="text/css" th:href="@{/static/layui/css/layui.css}">
+	    <!--[if lt IE 9]>
+	      	<script th:src="@{/static/framework/html5shiv.min.js}"></script>
+	      	<script th:src="@{/static/framework/respond.min.js}"></script>
+	    <![endif]-->
+		<script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+		<script th:src="@{/static/framework/cframe.js}"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+		
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/frameStyle.css}">
+		<script type="text/javascript" th:src="@{/static/framework/frame.js}" ></script>
+		
+	</head>
+
+	<body>
+		<!-- 左侧菜单 - 开始 -->
+		<div class="frameMenu">
+		    <div class="logo">
+		        <img src="../static/images/logo.png"/>
+		        <div class="logoText">
+		            <h1>党建工作系统</h1>
+		        </div>
+		    </div>
+		    <div class="menu">
+		    	<div class="hoverBox"></div>
+		        <ul>
+					<li>
+						<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-liuliangyunpingtaitubiao03 left" onmouseenter="getLeftTips(this, '档案管理')" onmouseleave="layer.closeAll('tips')"></i><font>档案管理</font><i class="iconfont icon-dajiantouyou right"></i></a>
+						<dl>
+							<dt><a href="javascript:void(0)" onclick="menuCAClick('/PartymemberController/view',this, 'page10001')">基本信息</a></dt>
+							<dt><a href="javascript:void(0)" onclick="menuCAClick('/TransferController/view',this, 'page10003')">转移信息</a></dt>
+							<dt><a href="javascript:void(0)" onclick="menuCAClick('/TransferController/view',this, 'page10002')">支部管理</a></dt>
+							<dt><a href="javascript:void(0)" onclick="menuCAClick('/TransferController/view',this, 'page10004')">先锋站管理</a></dt>
+						</dl>
+					</li>
+		        	<li>
+		                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-liuliangyunpingtaitubiao03 left" onmouseenter="getLeftTips(this, '党务管理')" onmouseleave="layer.closeAll('tips')"></i><font>党务管理</font><i class="iconfont icon-dajiantouyou right"></i></a>
+		                <dl>
+		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/agent_add.html',this, 'page10022')">会务活动</a></dt>
+		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/agent_list.html',this, 'page10023')">组织管理</a></dt>
+		                </dl>
+		            </li>
+		        	<li>
+		                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-shangpin left" onmouseenter="getLeftTips(this, '积分管理')" onmouseleave="layer.closeAll('tips')"></i><font>积分管理</font><i class="iconfont icon-dajiantouyou right"></i></a>
+		                <dl>
+		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goodsType_list.html',this, 'page10024')">参会积分</a></dt>
+		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_list.html',this, 'page10025')">学习积分</a></dt>
+		                	<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_add.html',this, 'page10026')">我的积分</a></dt>
+		                </dl>
+		            </li>
+		        </ul>
+		    </div>
+		</div>
+		<!-- 左侧菜单 - 结束 -->
+		
+		<div class="main">
+			<!-- 头部栏 - 开始 -->
+			<div class="frameTop">
+				<div class="shrinkBut">
+		    		<div class="hoverBox"></div>
+					<ul>
+						<li><a href="javascript:void(0)" onclick="menuShrink(this)" onmouseenter="getTips(this, '收缩菜单')" onmouseleave="layer.closeAll('tips')"><i class="iconfont icon-caidan-shousuo"></i></a></li>
+						<li><a href="javascript:void(0)" onclick="frameRefresh()" onmouseenter="getTips(this, '刷新')" onmouseleave="layer.closeAll('tips')"><i class="iconfont icon-htmal5icon23"></i></a></li>
+					</ul>
+				</div>
+				<div class="topMenu">
+		    		<div class="hoverBox"></div>
+					<ul>
+						<li><a href="javascript:void(0)" onclick="menuCAClick('tgls/modify_password.html',this, 'pageNotice', '通知公告')" onmouseenter="getTips(this, '通知公告')" onmouseleave="layer.closeAll('tips')"><i class="iconfont icon-tongzhigonggao1"></i><span class="news"></span></a></li>
+						<li><a href="javascript:void(0)" id="fullScreenBut" onclick="fullScreen('fullScreenBut')" onmouseenter="getTips(this, '全屏')" onmouseleave="layer.closeAll('tips')"><i class="iconfont icon-full-screen"></i></a></li>
+						<li>
+							<a href="javascript:void(0)"><font>管理员</font><i class="iconfont icon-up-copy"></i></a>
+							<dl>
+			                	<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/modify_password.html',this, 'pageUserInfo')">基本资料</a></dt>
+			                	<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/modify_password.html',this, 'pageModifyPassword')">修改密码</a></dt>
+			                </dl>
+						</li>
+						<li><a href="login.html" onmouseenter="getTips(this, '退出系统')" onmouseleave="layer.closeAll('tips')"><i class="iconfont icon-084tuichu"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 头部栏 - 结束 -->
+			
+			<!-- 核心区域 - 开始 -->
+			<div class="frameMain">
+				<div class="title" id="frameMainTitle">
+					<i class="iconfont icon-shuangzuojiantou- leftbut" onclick="pageShow('l')"></i>
+					<div class="mainPageBox">
+						<div class="mainPage">
+							<span class="active" onclick="pageSwitch(this)">
+			    				<div class="hoverBox"></div>
+								<i class="iconfont icon-shouye"></i>
+							</span>
+						</div>
+					</div>
+					<i class="iconfont icon-shuangyoujiantou- rightbut" onclick="pageShow('r')"></i>
+					<i class="iconfont icon-iconfontarrows1 rightbut pageAllBut">
+						<dl>
+		                	<dt><a href="javascript:void(0)" onclick="nowpageClose()">关闭当前标签页</a></dt>
+		                	<dt><a href="javascript:void(0)" onclick="otherpageClose()">关闭其它标签页</a></dt>
+		                	<dt><a href="javascript:void(0)" onclick="allpageClose()">关闭全部标签页</a></dt>
+		                </dl>
+					</i>
+				</div>
+				<div class="con">
+					<div class="mainPageCon">
+						<iframe class="mainIframe" th:src="@{/admin/tglsIndex}" scrolling="yes"></iframe>
+					</div>
+				</div>
+			</div>
+			<!-- 核心区域 - 结束 -->
+		</div>
+	</body>
+
+</html>
