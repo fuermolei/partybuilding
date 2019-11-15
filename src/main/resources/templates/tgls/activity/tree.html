@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+  <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+  <meta name="renderer" content="webkit">
+  <!--国产浏览器高速模式-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="留白" />
+  <!-- 作者 -->
+  <meta name="revised" content="留白.v1, 2019/05/01" />
+  <!-- 定义页面的最新版本 -->
+  <meta name="description" content="网站简介" />
+  <!-- 网站简介 -->
+  <meta name="keywords" content="党,党建,党建系统" />
+  <title>党建工作系统</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/static/layui/css/layui.css}">
+  <script type="text/javascript" th:src="@{/static/framework/jquery-1.11.3.min.js}" ></script>
+  <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+  <!-- zTree 开始 -->
+  <link rel="stylesheet" th:href="@{/static/css/zTreeStyle/zTreeStyle.css}" type="text/css">
+  <script type="text/javascript" th:src="@{/static/framework/jquery.ztree.core.js}"></script>
+  <script type="text/javascript" th:src="@{/static/framework/jquery.ztree.excheck.js}"></script>
+  <!-- zTree 结束 -->
+</head>
+<body style="margin: 0 auto; text-align: center">
+<div class="cBody" style="margin: 0 auto; text-align: center">
+  <div class="console" style="margin-top: 10px">
+    <a id="checkAll" class="layui-btn layui-btn-sm" href="#">全选</a>
+    <a id="checkReverse" class="layui-btn layui-btn-sm" href="#">反选</a>
+    <!--<a id="checkAllFalse" class="layui-btn layui-btn-sm" href="#">取消</a>-->
+    <a id="checkOpen" class="layui-btn layui-btn-sm layui-btn-normal" href="#">展开</a>
+    <a id="checkClose" class="layui-btn layui-btn-sm layui-btn-normal" href="#">收起</a>
+    <a id="confirm" class="layui-btn layui-btn-sm layui-btn-danger" href="#">确认</a>
+  </div>
+  <ul id="powerMenu" class="ztree" style="width: 80%;margin-left: 10%"></ul>
+</div>
+<SCRIPT>
+  var setting = {
+    check: {
+      enable: true,
+      chkboxType: { "Y" : "ps", "N" : "ps" }
+    },
+    data: {
+      simpleData: {
+        enable: true
+      }
+    },
+    view: {
+      showIcon: false
+    }
+  };
+
+  $(document).ready(function(){
+    //$.fn.zTree.init($("#powerMenu"), setting, zNodes);
+    $.ajax({
+      type: "Get",
+      url: "/PartymemberController/getTree",   //ajax请求地址
+      dataType: "json",
+      success: function (data) {
+        $.fn.zTree.init($("#powerMenu"), setting, data); //加载数据
+      },
+
+    });
+    $("#checkAll").bind("click", function(){
+      var zTree = $.fn.zTree.getZTreeObj("powerMenu");
+      zTree.checkAllNodes(true);
+    });
+    $("#checkAllFalse").bind("click", function(){
+      var zTree = $.fn.zTree.getZTreeObj("powerMenu");
+      zTree.checkAllNodes(false);
+    });
+    $("#checkOpen").bind("click", function(){
+      var zTree = $.fn.zTree.getZTreeObj("powerMenu");
+      zTree.expandAll(true);
+    });
+    $("#checkClose").bind("click", function(){
+      var zTree = $.fn.zTree.getZTreeObj("powerMenu");
+      zTree.expandAll(false);
+    });
+    $("#checkReverse").bind("click", checkReverse);
+    $("#confirm").bind("click", function(){
+      var treeObj = $.fn.zTree.getZTreeObj("powerMenu"),
+              nodes = treeObj.getCheckedNodes(true),
+              ids = "";
+      for (var i = 0; i < nodes.length; i++) {
+        if(nodes[i].nodes==3){
+          ids += nodes[i].id + ",";
+        }
+        console.log("节点id:" + nodes[i].id + "节点名称" + ids); //获取选中节点的值
+      }
+      var idd=ids.substr(0,ids.length-1);
+      parent.ChooseAdidValues(idd); //这是父页面函数
+      var index = parent.layer.getFrameIndex(window.name);
+      parent.layer.close(index);//关闭当前页
+
+    });
+
+  });
+
+  //zTree反选功能
+  function checkReverse() {
+    var zTree_Menu = $.fn.zTree.getZTreeObj("powerMenu");
+    var allNodes = zTree_Menu.getNodes();//获取所有节点
+    var nodes = zTree_Menu.transformToArray(allNodes); //转变为数组
+    console.log(nodes)
+    $.each(nodes, function(index, node) {
+      if(node.checked){
+        node.checked = false;  //设为选中
+      }else{
+        node.checked = true;  //设为选中
+      }
+      zTree_Menu.updateNode(node);//更新状态
+    });
+    //检测二级是否被选中，如果被选中，则把一级选中
+
+    zTree_Menu.expandAll(true);//展开整棵树
+  }
+
+</SCRIPT>
+</body>
+</html>

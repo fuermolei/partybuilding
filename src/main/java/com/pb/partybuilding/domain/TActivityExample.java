@@ -803,6 +803,146 @@ public class TActivityExample {
             addCriterion("place not between", value1, value2, "place");
             return (Criteria) this;
         }
+
+        public Criteria andReleaseTimeIsNull() {
+            addCriterion("release_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeIsNotNull() {
+            addCriterion("release_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeEqualTo(String value) {
+            addCriterion("release_time =", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeNotEqualTo(String value) {
+            addCriterion("release_time <>", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeGreaterThan(String value) {
+            addCriterion("release_time >", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeGreaterThanOrEqualTo(String value) {
+            addCriterion("release_time >=", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeLessThan(String value) {
+            addCriterion("release_time <", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeLessThanOrEqualTo(String value) {
+            addCriterion("release_time <=", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeLike(String value) {
+            addCriterion("release_time like", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeNotLike(String value) {
+            addCriterion("release_time not like", value, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeIn(List<String> values) {
+            addCriterion("release_time in", values, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeNotIn(List<String> values) {
+            addCriterion("release_time not in", values, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeBetween(String value1, String value2) {
+            addCriterion("release_time between", value1, value2, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseTimeNotBetween(String value1, String value2) {
+            addCriterion("release_time not between", value1, value2, "releaseTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorIsNull() {
+            addCriterion("author is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorIsNotNull() {
+            addCriterion("author is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorEqualTo(String value) {
+            addCriterion("author =", value, "author");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorNotEqualTo(String value) {
+            addCriterion("author <>", value, "author");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorGreaterThan(String value) {
+            addCriterion("author >", value, "author");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorGreaterThanOrEqualTo(String value) {
+            addCriterion("author >=", value, "author");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorLessThan(String value) {
+            addCriterion("author <", value, "author");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorLessThanOrEqualTo(String value) {
+            addCriterion("author <=", value, "author");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorLike(String value) {
+            addCriterion("author like", value, "author");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorNotLike(String value) {
+            addCriterion("author not like", value, "author");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorIn(List<String> values) {
+            addCriterion("author in", values, "author");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorNotIn(List<String> values) {
+            addCriterion("author not in", values, "author");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorBetween(String value1, String value2) {
+            addCriterion("author between", value1, value2, "author");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorNotBetween(String value1, String value2) {
+            addCriterion("author not between", value1, value2, "author");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

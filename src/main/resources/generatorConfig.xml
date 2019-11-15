@@ -67,7 +67,8 @@
         <table schema="" tableName="t_notice"></table>
         <table schema="" tableName="t_branch"></table>
         <table schema="" tableName="t_vanguard"></table>
-        <table schema="" tableName="t_integral"></table>-->
-        <table schema="" tableName="t_transfer"></table>
+        <table schema="" tableName="t_integral"></table>
+        <table schema="" tableName="t_transfer"></table>-->
+        <table schema="" tableName="t_activity"></table>
     </context>
 </generatorConfiguration>

@@ -7,6 +7,8 @@ public class TActivity {
 
     private String pic;
 
+    private String oobject;//通知对象
+
     private String content;
 
     private String status;
@@ -20,6 +22,10 @@ public class TActivity {
     private String acttivitydate;
 
     private String place;
+
+    private String releaseTime;
+
+    private String author;
 
     public String getId() {
         return id;
@@ -99,5 +105,29 @@ public class TActivity {
 
     public void setPlace(String place) {
         this.place = place == null ? null : place.trim();
+    }
+
+    public String getReleaseTime() {
+        return releaseTime;
+    }
+
+    public void setReleaseTime(String releaseTime) {
+        this.releaseTime = releaseTime == null ? null : releaseTime.trim();
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author == null ? null : author.trim();
+    }
+
+    public String getOobject() {
+        return oobject;
+    }
+
+    public void setOobject(String oobject) {
+        this.oobject = oobject;
     }
 }

@@ -12,6 +12,8 @@
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="acttivitydate" property="acttivitydate" jdbcType="VARCHAR" />
     <result column="place" property="place" jdbcType="VARCHAR" />
+    <result column="release_time" property="releaseTime" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, title, pic, content, status, remark, integral, code, acttivitydate, place
+    id, title, pic, content, status, remark, integral, code, acttivitydate, place, release_time, 
+    author
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pb.partybuilding.domain.TActivityExample" >
     select
@@ -108,11 +111,13 @@
     insert into t_activity (id, title, pic, 
       content, status, remark, 
       integral, code, acttivitydate, 
-      place)
+      place, release_time, author
+      )
     values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
       #{integral,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{acttivitydate,jdbcType=VARCHAR}, 
-      #{place,jdbcType=VARCHAR})
+      #{place,jdbcType=VARCHAR}, #{releaseTime,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.pb.partybuilding.domain.TActivity" >
     insert into t_activity
@@ -147,6 +152,12 @@
       <if test="place != null" >
         place,
       </if>
+      <if test="releaseTime != null" >
+        release_time,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -178,6 +189,12 @@
       </if>
       <if test="place != null" >
         #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseTime != null" >
+        #{releaseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -220,6 +237,12 @@
       <if test="record.place != null" >
         place = #{record.place,jdbcType=VARCHAR},
       </if>
+      <if test="record.releaseTime != null" >
+        release_time = #{record.releaseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -236,7 +259,9 @@
       integral = #{record.integral,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
       acttivitydate = #{record.acttivitydate,jdbcType=VARCHAR},
-      place = #{record.place,jdbcType=VARCHAR}
+      place = #{record.place,jdbcType=VARCHAR},
+      release_time = #{record.releaseTime,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -271,6 +296,12 @@
       <if test="place != null" >
         place = #{place,jdbcType=VARCHAR},
       </if>
+      <if test="releaseTime != null" >
+        release_time = #{releaseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -284,7 +315,9 @@
       integral = #{integral,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
       acttivitydate = #{acttivitydate,jdbcType=VARCHAR},
-      place = #{place,jdbcType=VARCHAR}
+      place = #{place,jdbcType=VARCHAR},
+      release_time = #{releaseTime,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

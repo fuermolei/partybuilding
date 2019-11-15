@@ -3,6 +3,7 @@ package com.pb.partybuilding.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.pb.partybuilding.common.domain.AjaxResult;
+import com.pb.partybuilding.domain.PartymenberTree;
 import com.pb.partybuilding.domain.TPartymember;
 import com.pb.partybuilding.domain.TTransfer;
 import com.pb.partybuilding.domain.Tablepar;
@@ -115,4 +116,22 @@ public class PartymemberController {
         transferService.insertSelective(tTransfer);
         return new ModelAndView("redirect:/PartymemberController/view");
     }
+
+    @GetMapping("details")
+    public String details(@RequestParam("id") String id, ModelMap mmap){
+        mmap.put("TPartymember", partymemberService.selectByPrimaryKey(id));
+        return prefix + "/details";
+    }
+
+    /**
+     * 获取通知对象的tree数据
+     * @return
+     */
+    @GetMapping("getTree")
+    @ResponseBody
+    public String getTree(){
+        System.out.println(JSONObject.toJSONString(partymemberService.getAll()));
+        return partymemberService.getAll();
+    }
+
 }

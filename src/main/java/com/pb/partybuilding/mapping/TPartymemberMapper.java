@@ -18,6 +18,8 @@ public interface TPartymemberMapper {
 
     List<TPartymember> selectByExample(TPartymemberExample example);
 
+    List<TPartymember> selectByExample2(TPartymemberExample example);
+
     TPartymember selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") TPartymember record, @Param("example") TPartymemberExample example);
