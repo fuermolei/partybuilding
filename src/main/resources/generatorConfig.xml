@@ -9,6 +9,7 @@
     <!--<classPathEntry location="D:\apache-maven-3.6.1-bin\repo\com\oracle\ojdbc6\11.2\ojdbc6-11.2.jar" />-->
     <classPathEntry
             location="D:\apache-maven-3.6.1-bin\repo\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar"/>
+
     <context id="testTables" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
@@ -63,6 +64,7 @@
         <!-- 指定数据库表 -->
         <!--<table schema="" tableName="t_partymember"></table>
         <table schema="" tableName="t_activity"></table>
+        <table schema="" tableName="t_partymember"></table>
         <table schema="" tableName="t_signup"></table>
         <table schema="" tableName="t_notice"></table>
         <table schema="" tableName="t_branch"></table>
@@ -70,5 +72,7 @@
         <table schema="" tableName="t_integral"></table>
         <table schema="" tableName="t_transfer"></table>-->
         <table schema="" tableName="t_activity"></table>
+        <table schema="" tableName="t_integral"></table>-->
+        <table schema="" tableName="t_transfer"></table>
     </context>
 </generatorConfiguration>

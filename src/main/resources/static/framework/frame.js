@@ -309,8 +309,6 @@ function menuCAClick(url,_this , pageId, text){
         var timesSamp=new Date().getTime();
         if(url.indexOf("?")!=-1){
             url+="&timesSamp="+timesSamp;
-        }else{
-            url+="?timesSamp="+timesSamp;
         }
     }*/
 	var mainStr = '<div class="mainPageCon">'+

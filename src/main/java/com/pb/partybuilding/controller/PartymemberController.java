@@ -58,11 +58,13 @@ public class PartymemberController {
         return AjaxResult.success(page.getTotal(),page.getList());
     }
 
+    /*跳转到添加页面*/
     @GetMapping("add")
     public String add(){
         return prefix+"/add";
     }
 
+    /*执行form表单中上传文件到指定文件夹*/
     @PostMapping("add")
     public ModelAndView add(TPartymember tPartymember ,@RequestParam("headImage") MultipartFile file){
         tPartymember.setId(SnowflakeIdWorker.getUUID());
@@ -74,12 +76,14 @@ public class PartymemberController {
         return new ModelAndView("redirect:/PartymemberController/view");
     }
 
+    /*跳转修改页面*/
     @GetMapping("edit")
     public String edit(@RequestParam("id") String id, ModelMap mmap){
         mmap.put("TPartymember", partymemberService.selectByPrimaryKey(id));
         return prefix + "/edit";
     }
 
+    /*提交*/
     @PostMapping("edit")
     public ModelAndView edit(TPartymember tPartymember ,@RequestParam("headImage") MultipartFile file){
         if (!file.isEmpty()) {

@@ -7,6 +7,7 @@ import com.pb.partybuilding.mapping.TVanguardMapper;
 import com.pb.partybuilding.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,5 +32,29 @@ public class VanguardService {
         TVanguardExample tVanguardExample = new TVanguardExample();
         List<TVanguard> list=tVanguardMapper.selectByExample(tVanguardExample);
         return list;
+    }
+
+    @Transactional
+    public int insertSelective(TVanguard record){
+        return tVanguardMapper.insertSelective(record);
+    }
+
+    public TVanguard selectByPrimaryKey(String id){
+        return tVanguardMapper.selectByPrimaryKey(id);
+    }
+
+    @Transactional
+    public int updateByPrimaryKey(TVanguard record){
+        return tVanguardMapper.updateByPrimaryKey(record);
+    }
+
+    @Transactional
+    public int deleteByPrimaryKey(String id){
+        return tVanguardMapper.deleteByPrimaryKey(id);
+    }
+
+    @Transactional
+    public int updateByPrimaryKeySelective(TVanguard record){
+        return tVanguardMapper.updateByPrimaryKeySelective(record);
     }
 }

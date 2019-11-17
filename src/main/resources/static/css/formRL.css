@@ -5,6 +5,14 @@
 .layui-form-label{
 	width: 100px;
 }
+<<<<<<< HEAD
+=======
+
+.layui-form-label-1{
+	width: 130px;
+}
+
+>>>>>>> e6e785f00605ec76230aab8dd0ad50b46b69c670
 .layui-input-block{
 	margin-left: 130px;
 }

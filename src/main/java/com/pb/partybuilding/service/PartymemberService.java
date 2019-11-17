@@ -6,6 +6,9 @@ import com.github.pagehelper.PageInfo;
 import com.pb.partybuilding.common.support.Convert;
 import com.pb.partybuilding.domain.*;
 import com.pb.partybuilding.mapping.TBranchMapper;
+import com.pb.partybuilding.domain.TPartymember;
+import com.pb.partybuilding.domain.TPartymemberExample;
+import com.pb.partybuilding.domain.Tablepar;
 import com.pb.partybuilding.mapping.TPartymemberMapper;
 import com.pb.partybuilding.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,5 +100,6 @@ public class PartymemberService {
         TPartymemberExample tPartymemberExample = new TPartymemberExample();
         tPartymemberExample.createCriteria().andIdIn(lista);
         return tPartymemberMapper.deleteByExample(tPartymemberExample);
+        //return tPartymemberMapper.deleteByPrimaryKey(id);
     }
 }

@@ -4,18 +4,41 @@
   <resultMap id="BaseResultMap" type="com.pb.partybuilding.domain.TPartymember" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="usedname" property="usedname" jdbcType="VARCHAR" />
     <result column="idnumber" property="idnumber" jdbcType="VARCHAR" />
     <result column="briefintroduction" property="briefintroduction" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="dateofbirth" property="dateofbirth" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="ingroup" property="ingroup" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="degreestatus" property="degreestatus" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="VARCHAR" />
     <result column="joiningpartydata" property="joiningpartydata" jdbcType="VARCHAR" />
     <result column="job" property="job" jdbcType="VARCHAR" />
     <result column="promise" property="promise" jdbcType="VARCHAR" />
     <result column="remarks" property="remarks" jdbcType="VARCHAR" />
     <result column="branch_id" property="branchId" jdbcType="VARCHAR" />
     <result column="vanguard_id" property="vanguardId" jdbcType="VARCHAR" />
+    <result column="nationality" property="nationality" jdbcType="VARCHAR" />
+    <result column="nativeplace" property="nativeplace" jdbcType="VARCHAR" />
+    <result column="medicalinsurance" property="medicalinsurance" jdbcType="VARCHAR" />
+    <result column="oldinsurance" property="oldinsurance" jdbcType="VARCHAR" />
+    <result column="maritalstatus" property="maritalstatus" jdbcType="VARCHAR" />
+    <result column="positivetime" property="positivetime" jdbcType="VARCHAR" />
+    <result column="workdate" property="workdate" jdbcType="VARCHAR" />
+    <result column="beginbranch" property="beginbranch" jdbcType="VARCHAR" />
+    <result column="changedbranch" property="changedbranch" jdbcType="VARCHAR" />
+    <result column="referrer" property="referrer" jdbcType="VARCHAR" />
+    <result column="joinedbranchdate" property="joinedbranchdate" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="ocupertino" property="ocupertino" jdbcType="VARCHAR" />
+    <result column="relationship" property="relationship" jdbcType="VARCHAR" />
+    <result column="domicileplace" property="domicileplace" jdbcType="VARCHAR" />
+    <result column="nowadd" property="nowadd" jdbcType="VARCHAR" />
+    <result column="wechat" property="wechat" jdbcType="VARCHAR" />
+    <result column="backups" property="backups" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -76,13 +99,21 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, idnumber, briefintroduction, sex, dateofbirth, phone, pic, joiningpartydata, 
-    job, promise, remarks,(select name from t_branch where id=t.branch_id) branch_id,(select name from t_vanguard where id=t.vanguard_id) vanguard_id
+    id, name, usedname, idnumber, briefintroduction, sex, dateofbirth, phone, ingroup,
+    pic, degreestatus, degree, joiningpartydata, job, promise, remarks, (select name from t_branch where id=t.branch_id) branch_id,(select name from t_vanguard where id=t.vanguard_id) vanguard_id,
+    nationality, nativeplace, medicalinsurance, oldinsurance, maritalstatus, positivetime, 
+    workdate,(select name from t_branch where id=t.beginbranch) beginbranch,(select name from t_branch where id=t.changedbranch) changedbranch, referrer, joinedbranchdate, major, ocupertino,
+    relationship, domicileplace, nowadd, wechat, backups
   </sql>
+
   <sql id="Base_Column_List2" >
-    id, name, idnumber, briefintroduction, sex, dateofbirth, phone, pic, joiningpartydata,
-    job, promise, remarks, branch_id, vanguard_id
+    id, name, usedname, idnumber, briefintroduction, sex, dateofbirth, phone, ingroup,
+    pic, degreestatus, degree, joiningpartydata, job, promise, remarks, branch_id, vanguard_id,
+    nationality, nativeplace, medicalinsurance, oldinsurance, maritalstatus, positivetime,
+    workdate, beginbranch, changedbranch, referrer, joinedbranchdate, major, ocupertino,
+    relationship, domicileplace, nowadd, wechat, backups
   </sql>
+
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pb.partybuilding.domain.TPartymemberExample" >
     select
     <if test="distinct" >
@@ -128,16 +159,32 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.pb.partybuilding.domain.TPartymember" >
-    insert into t_partymember (id, name, idnumber, 
-      briefintroduction, sex, dateofbirth, 
-      phone, pic, joiningpartydata, 
-      job, promise, remarks, 
-      branch_id, vanguard_id)
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, 
-      #{briefintroduction,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{dateofbirth,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{joiningpartydata,jdbcType=VARCHAR}, 
-      #{job,jdbcType=VARCHAR}, #{promise,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
-      #{branchId,jdbcType=VARCHAR}, #{vanguardId,jdbcType=VARCHAR})
+    insert into t_partymember (id, name, usedname,
+      idnumber, briefintroduction, sex, 
+      dateofbirth, phone, ingroup, 
+      pic, degreestatus, degree, 
+      joiningpartydata, job, promise, 
+      remarks, branch_id, vanguard_id, 
+      nationality, nativeplace, medicalinsurance, 
+      oldinsurance, maritalstatus, positivetime, 
+      workdate, beginbranch, changedbranch, 
+      referrer, joinedbranchdate, major, 
+      ocupertino, relationship, domicileplace, 
+      nowadd, wechat, backups
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{usedname,jdbcType=VARCHAR}, 
+      #{idnumber,jdbcType=VARCHAR}, #{briefintroduction,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{dateofbirth,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{ingroup,jdbcType=VARCHAR}, 
+      #{pic,jdbcType=VARCHAR}, #{degreestatus,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, 
+      #{joiningpartydata,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{promise,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{branchId,jdbcType=VARCHAR}, #{vanguardId,jdbcType=VARCHAR}, 
+      #{nationality,jdbcType=VARCHAR}, #{nativeplace,jdbcType=VARCHAR}, #{medicalinsurance,jdbcType=VARCHAR}, 
+      #{oldinsurance,jdbcType=VARCHAR}, #{maritalstatus,jdbcType=VARCHAR}, #{positivetime,jdbcType=VARCHAR}, 
+      #{workdate,jdbcType=VARCHAR}, #{beginbranch,jdbcType=VARCHAR}, #{changedbranch,jdbcType=VARCHAR}, 
+      #{referrer,jdbcType=VARCHAR}, #{joinedbranchdate,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
+      #{ocupertino,jdbcType=VARCHAR}, #{relationship,jdbcType=VARCHAR}, #{domicileplace,jdbcType=VARCHAR}, 
+      #{nowadd,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{backups,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.pb.partybuilding.domain.TPartymember" >
     insert into t_partymember
@@ -147,6 +194,9 @@
       </if>
       <if test="name != null" >
         name,
+      </if>
+      <if test="usedname != null" >
+        usedname,
       </if>
       <if test="idnumber != null" >
         idnumber,
@@ -166,6 +216,18 @@
       <if test="pic != null" >
         pic,
       </if>
+      <if test="ingroup != null" >
+        ingroup,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="degreestatus != null" >
+        degreestatus,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
       <if test="joiningpartydata != null" >
         joiningpartydata,
       </if>
@@ -184,6 +246,60 @@
       <if test="vanguardId != null" >
         vanguard_id,
       </if>
+      <if test="nationality != null" >
+        nationality,
+      </if>
+      <if test="nativeplace != null" >
+        nativeplace,
+      </if>
+      <if test="medicalinsurance != null" >
+        medicalinsurance,
+      </if>
+      <if test="oldinsurance != null" >
+        oldinsurance,
+      </if>
+      <if test="maritalstatus != null" >
+        maritalstatus,
+      </if>
+      <if test="positivetime != null" >
+        positivetime,
+      </if>
+      <if test="workdate != null" >
+        workdate,
+      </if>
+      <if test="beginbranch != null" >
+        beginbranch,
+      </if>
+      <if test="changedbranch != null" >
+        changedbranch,
+      </if>
+      <if test="referrer != null" >
+        referrer,
+      </if>
+      <if test="joinedbranchdate != null" >
+        joinedbranchdate,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="ocupertino != null" >
+        ocupertino,
+      </if>
+      <if test="relationship != null" >
+        relationship,
+      </if>
+      <if test="domicileplace != null" >
+        domicileplace,
+      </if>
+      <if test="nowadd != null" >
+        nowadd,
+      </if>
+      <if test="wechat != null" >
+        wechat,
+      </if>
+      <if test="backups != null" >
+        backups,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -191,6 +307,9 @@
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="usedname != null" >
+        #{usedname,jdbcType=VARCHAR},
       </if>
       <if test="idnumber != null" >
         #{idnumber,jdbcType=VARCHAR},
@@ -210,6 +329,18 @@
       <if test="pic != null" >
         #{pic,jdbcType=VARCHAR},
       </if>
+      <if test="ingroup != null" >
+        #{ingroup,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="degreestatus != null" >
+        #{degreestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
       <if test="joiningpartydata != null" >
         #{joiningpartydata,jdbcType=VARCHAR},
       </if>
@@ -228,6 +359,60 @@
       <if test="vanguardId != null" >
         #{vanguardId,jdbcType=VARCHAR},
       </if>
+      <if test="nationality != null" >
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalinsurance != null" >
+        #{medicalinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="oldinsurance != null" >
+        #{oldinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalstatus != null" >
+        #{maritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="positivetime != null" >
+        #{positivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="workdate != null" >
+        #{workdate,jdbcType=VARCHAR},
+      </if>
+      <if test="beginbranch != null" >
+        #{beginbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="changedbranch != null" >
+        #{changedbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="referrer != null" >
+        #{referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="joinedbranchdate != null" >
+        #{joinedbranchdate,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="ocupertino != null" >
+        #{ocupertino,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null" >
+        #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="domicileplace != null" >
+        #{domicileplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nowadd != null" >
+        #{nowadd,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="backups != null" >
+        #{backups,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.pb.partybuilding.domain.TPartymemberExample" resultType="java.lang.Integer" >
@@ -244,6 +429,9 @@
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usedname != null" >
+        usedname = #{record.usedname,jdbcType=VARCHAR},
       </if>
       <if test="record.idnumber != null" >
         idnumber = #{record.idnumber,jdbcType=VARCHAR},
@@ -263,6 +451,18 @@
       <if test="record.pic != null" >
         pic = #{record.pic,jdbcType=VARCHAR},
       </if>
+      <if test="record.ingroup != null" >
+        ingroup = #{record.ingroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic != null" >
+        pic = #{record.pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degreestatus != null" >
+        degreestatus = #{record.degreestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degree != null" >
+        degree = #{record.degree,jdbcType=VARCHAR},
+      </if>
       <if test="record.joiningpartydata != null" >
         joiningpartydata = #{record.joiningpartydata,jdbcType=VARCHAR},
       </if>
@@ -281,6 +481,60 @@
       <if test="record.vanguardId != null" >
         vanguard_id = #{record.vanguardId,jdbcType=VARCHAR},
       </if>
+      <if test="record.nationality != null" >
+        nationality = #{record.nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nativeplace != null" >
+        nativeplace = #{record.nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicalinsurance != null" >
+        medicalinsurance = #{record.medicalinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldinsurance != null" >
+        oldinsurance = #{record.oldinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maritalstatus != null" >
+        maritalstatus = #{record.maritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positivetime != null" >
+        positivetime = #{record.positivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workdate != null" >
+        workdate = #{record.workdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beginbranch != null" >
+        beginbranch = #{record.beginbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changedbranch != null" >
+        changedbranch = #{record.changedbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referrer != null" >
+        referrer = #{record.referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joinedbranchdate != null" >
+        joinedbranchdate = #{record.joinedbranchdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.major != null" >
+        major = #{record.major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ocupertino != null" >
+        ocupertino = #{record.ocupertino,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationship != null" >
+        relationship = #{record.relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="record.domicileplace != null" >
+        domicileplace = #{record.domicileplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nowadd != null" >
+        nowadd = #{record.nowadd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechat != null" >
+        wechat = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backups != null" >
+        backups = #{record.backups,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -290,18 +544,41 @@
     update t_partymember
     set id = #{record.id,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
+      usedname = #{record.usedname,jdbcType=VARCHAR},
       idnumber = #{record.idnumber,jdbcType=VARCHAR},
       briefintroduction = #{record.briefintroduction,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=VARCHAR},
       dateofbirth = #{record.dateofbirth,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       pic = #{record.pic,jdbcType=VARCHAR},
+      ingroup = #{record.ingroup,jdbcType=VARCHAR},
+      pic = #{record.pic,jdbcType=VARCHAR},
+      degreestatus = #{record.degreestatus,jdbcType=VARCHAR},
+      degree = #{record.degree,jdbcType=VARCHAR},
       joiningpartydata = #{record.joiningpartydata,jdbcType=VARCHAR},
       job = #{record.job,jdbcType=VARCHAR},
       promise = #{record.promise,jdbcType=VARCHAR},
       remarks = #{record.remarks,jdbcType=VARCHAR},
       branch_id = #{record.branchId,jdbcType=VARCHAR},
-      vanguard_id = #{record.vanguardId,jdbcType=VARCHAR}
+      vanguard_id = #{record.vanguardId,jdbcType=VARCHAR},
+      nationality = #{record.nationality,jdbcType=VARCHAR},
+      nativeplace = #{record.nativeplace,jdbcType=VARCHAR},
+      medicalinsurance = #{record.medicalinsurance,jdbcType=VARCHAR},
+      oldinsurance = #{record.oldinsurance,jdbcType=VARCHAR},
+      maritalstatus = #{record.maritalstatus,jdbcType=VARCHAR},
+      positivetime = #{record.positivetime,jdbcType=VARCHAR},
+      workdate = #{record.workdate,jdbcType=VARCHAR},
+      beginbranch = #{record.beginbranch,jdbcType=VARCHAR},
+      changedbranch = #{record.changedbranch,jdbcType=VARCHAR},
+      referrer = #{record.referrer,jdbcType=VARCHAR},
+      joinedbranchdate = #{record.joinedbranchdate,jdbcType=VARCHAR},
+      major = #{record.major,jdbcType=VARCHAR},
+      ocupertino = #{record.ocupertino,jdbcType=VARCHAR},
+      relationship = #{record.relationship,jdbcType=VARCHAR},
+      domicileplace = #{record.domicileplace,jdbcType=VARCHAR},
+      nowadd = #{record.nowadd,jdbcType=VARCHAR},
+      wechat = #{record.wechat,jdbcType=VARCHAR},
+      backups = #{record.backups,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -311,6 +588,9 @@
     <set >
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="usedname != null" >
+        usedname = #{usedname,jdbcType=VARCHAR},
       </if>
       <if test="idnumber != null" >
         idnumber = #{idnumber,jdbcType=VARCHAR},
@@ -330,6 +610,18 @@
       <if test="pic != null" >
         pic = #{pic,jdbcType=VARCHAR},
       </if>
+      <if test="ingroup != null" >
+        ingroup = #{ingroup,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="degreestatus != null" >
+        degreestatus = #{degreestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
       <if test="joiningpartydata != null" >
         joiningpartydata = #{joiningpartydata,jdbcType=VARCHAR},
       </if>
@@ -348,24 +640,100 @@
       <if test="vanguardId != null" >
         vanguard_id = #{vanguardId,jdbcType=VARCHAR},
       </if>
+      <if test="nationality != null" >
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        nativeplace = #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalinsurance != null" >
+        medicalinsurance = #{medicalinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="oldinsurance != null" >
+        oldinsurance = #{oldinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalstatus != null" >
+        maritalstatus = #{maritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="positivetime != null" >
+        positivetime = #{positivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="workdate != null" >
+        workdate = #{workdate,jdbcType=VARCHAR},
+      </if>
+      <if test="beginbranch != null" >
+        beginbranch = #{beginbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="changedbranch != null" >
+        changedbranch = #{changedbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="referrer != null" >
+        referrer = #{referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="joinedbranchdate != null" >
+        joinedbranchdate = #{joinedbranchdate,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="ocupertino != null" >
+        ocupertino = #{ocupertino,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null" >
+        relationship = #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="domicileplace != null" >
+        domicileplace = #{domicileplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nowadd != null" >
+        nowadd = #{nowadd,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="backups != null" >
+        backups = #{backups,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.pb.partybuilding.domain.TPartymember" >
     update t_partymember
     set name = #{name,jdbcType=VARCHAR},
+      usedname = #{usedname,jdbcType=VARCHAR},
       idnumber = #{idnumber,jdbcType=VARCHAR},
       briefintroduction = #{briefintroduction,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       dateofbirth = #{dateofbirth,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
+      ingroup = #{ingroup,jdbcType=VARCHAR},
       pic = #{pic,jdbcType=VARCHAR},
+      degreestatus = #{degreestatus,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=VARCHAR},
       joiningpartydata = #{joiningpartydata,jdbcType=VARCHAR},
       job = #{job,jdbcType=VARCHAR},
       promise = #{promise,jdbcType=VARCHAR},
       remarks = #{remarks,jdbcType=VARCHAR},
       branch_id = #{branchId,jdbcType=VARCHAR},
-      vanguard_id = #{vanguardId,jdbcType=VARCHAR}
+      vanguard_id = #{vanguardId,jdbcType=VARCHAR},
+      nationality = #{nationality,jdbcType=VARCHAR},
+      nativeplace = #{nativeplace,jdbcType=VARCHAR},
+      medicalinsurance = #{medicalinsurance,jdbcType=VARCHAR},
+      oldinsurance = #{oldinsurance,jdbcType=VARCHAR},
+      maritalstatus = #{maritalstatus,jdbcType=VARCHAR},
+      positivetime = #{positivetime,jdbcType=VARCHAR},
+      workdate = #{workdate,jdbcType=VARCHAR},
+      beginbranch = #{beginbranch,jdbcType=VARCHAR},
+      changedbranch = #{changedbranch,jdbcType=VARCHAR},
+      referrer = #{referrer,jdbcType=VARCHAR},
+      joinedbranchdate = #{joinedbranchdate,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      ocupertino = #{ocupertino,jdbcType=VARCHAR},
+      relationship = #{relationship,jdbcType=VARCHAR},
+      domicileplace = #{domicileplace,jdbcType=VARCHAR},
+      nowadd = #{nowadd,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      backups = #{backups,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
