@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+  <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+  <meta name="renderer" content="webkit">
+  <!--国产浏览器高速模式-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="留白" />
+  <!-- 作者 -->
+  <meta name="revised" content="留白.v1, 2019/05/01" />
+  <!-- 定义页面的最新版本 -->
+  <meta name="description" content="网站简介" />
+  <!-- 网站简介 -->
+  <meta name="keywords" content="党,党建,党建系统" />
+  <title>党建工作系统</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/static/layui/css/layui.css}">
+  <script type="text/javascript" th:src="@{/static/framework/jquery-1.11.3.min.js}" ></script>
+  <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+</head>
+<body class="layui-layout-body" style="overflow-y:scroll; overflow-x:scroll;">
+<div>
+  <div th:object="${TActivity}" style="width: 100%;text-align: center">
+    <h1><p th:text="*{title}"></p></h1><p>活动签到</p>
+    <input th:value="*{id}" type="hidden" id="id">
+    <div class="layui-form-item">
+      <label class="layui-form-label">身份证号</label>
+      <div class="layui-input-block">
+        <input type="text" id="idnumber" name="idnumber" lay-verify="required|title" required placeholder="请输入身份证号" autocomplete="off" class="layui-input">
+        <p style="color: #9f191f" id="error"></p>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button type="button" class="layui-btn layui-btn-normal" id="signin" onclick="signin();">签到</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+
+  function signin() {
+    layui.use('layer', function(){
+      var layer = layui.layer;
+      var id = $("#id").val();
+      var idnumber = $("#idnumber").val();
+
+      $.ajax({
+        url: '/SignUpController/checkUp',
+        dataType: "json",
+        type: "POST",
+        data:{idnumber:idnumber,id:id},
+        async: false,
+        success: function (data) {
+          //后台服务返回数据，重新加载数据
+          if (data.code == 200) {
+            layer.msg(data.msg, {
+              icon: 1
+            });
+          }else {
+            layer.msg(data.msg, {
+              icon: 5
+            });
+          }
+        }
+      });
+    });
+
+  };
+
+
+
+
+</script>
+</body>
+</html>

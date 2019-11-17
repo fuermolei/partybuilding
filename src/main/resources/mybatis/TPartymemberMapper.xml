@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pb.partybuilding.mapping.TPartymemberMapper" >
+  <resultMap id="BaseResultMap" type="com.pb.partybuilding.domain.TPartymember" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="idnumber" property="idnumber" jdbcType="VARCHAR" />
+    <result column="briefintroduction" property="briefintroduction" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="dateofbirth" property="dateofbirth" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="joiningpartydata" property="joiningpartydata" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="promise" property="promise" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="branch_id" property="branchId" jdbcType="VARCHAR" />
+    <result column="vanguard_id" property="vanguardId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, idnumber, briefintroduction, sex, dateofbirth, phone, pic, joiningpartydata, 
+    job, promise, remarks,(select name from t_branch where id=t.branch_id) branch_id,(select name from t_vanguard where id=t.vanguard_id) vanguard_id
+  </sql>
+  <sql id="Base_Column_List2" >
+    id, name, idnumber, briefintroduction, sex, dateofbirth, phone, pic, joiningpartydata,
+    job, promise, remarks, branch_id, vanguard_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pb.partybuilding.domain.TPartymemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_partymember t
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample2" resultMap="BaseResultMap" parameterType="com.pb.partybuilding.domain.TPartymemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List2" />
+    from t_partymember t
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List2" />
+    from t_partymember t
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_partymember
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.pb.partybuilding.domain.TPartymemberExample" >
+    delete from t_partymember
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pb.partybuilding.domain.TPartymember" >
+    insert into t_partymember (id, name, idnumber, 
+      briefintroduction, sex, dateofbirth, 
+      phone, pic, joiningpartydata, 
+      job, promise, remarks, 
+      branch_id, vanguard_id)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, 
+      #{briefintroduction,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{dateofbirth,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{joiningpartydata,jdbcType=VARCHAR}, 
+      #{job,jdbcType=VARCHAR}, #{promise,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{branchId,jdbcType=VARCHAR}, #{vanguardId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pb.partybuilding.domain.TPartymember" >
+    insert into t_partymember
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="idnumber != null" >
+        idnumber,
+      </if>
+      <if test="briefintroduction != null" >
+        briefintroduction,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="dateofbirth != null" >
+        dateofbirth,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="joiningpartydata != null" >
+        joiningpartydata,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="promise != null" >
+        promise,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="branchId != null" >
+        branch_id,
+      </if>
+      <if test="vanguardId != null" >
+        vanguard_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null" >
+        #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="briefintroduction != null" >
+        #{briefintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateofbirth != null" >
+        #{dateofbirth,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="joiningpartydata != null" >
+        #{joiningpartydata,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="promise != null" >
+        #{promise,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="branchId != null" >
+        #{branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="vanguardId != null" >
+        #{vanguardId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pb.partybuilding.domain.TPartymemberExample" resultType="java.lang.Integer" >
+    select count(*) from t_partymember
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_partymember
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idnumber != null" >
+        idnumber = #{record.idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.briefintroduction != null" >
+        briefintroduction = #{record.briefintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateofbirth != null" >
+        dateofbirth = #{record.dateofbirth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic != null" >
+        pic = #{record.pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joiningpartydata != null" >
+        joiningpartydata = #{record.joiningpartydata,jdbcType=VARCHAR},
+      </if>
+      <if test="record.job != null" >
+        job = #{record.job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promise != null" >
+        promise = #{record.promise,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.branchId != null" >
+        branch_id = #{record.branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vanguardId != null" >
+        vanguard_id = #{record.vanguardId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_partymember
+    set id = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      idnumber = #{record.idnumber,jdbcType=VARCHAR},
+      briefintroduction = #{record.briefintroduction,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      dateofbirth = #{record.dateofbirth,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      pic = #{record.pic,jdbcType=VARCHAR},
+      joiningpartydata = #{record.joiningpartydata,jdbcType=VARCHAR},
+      job = #{record.job,jdbcType=VARCHAR},
+      promise = #{record.promise,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      branch_id = #{record.branchId,jdbcType=VARCHAR},
+      vanguard_id = #{record.vanguardId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pb.partybuilding.domain.TPartymember" >
+    update t_partymember
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null" >
+        idnumber = #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="briefintroduction != null" >
+        briefintroduction = #{briefintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateofbirth != null" >
+        dateofbirth = #{dateofbirth,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="joiningpartydata != null" >
+        joiningpartydata = #{joiningpartydata,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="promise != null" >
+        promise = #{promise,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="branchId != null" >
+        branch_id = #{branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="vanguardId != null" >
+        vanguard_id = #{vanguardId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pb.partybuilding.domain.TPartymember" >
+    update t_partymember
+    set name = #{name,jdbcType=VARCHAR},
+      idnumber = #{idnumber,jdbcType=VARCHAR},
+      briefintroduction = #{briefintroduction,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      dateofbirth = #{dateofbirth,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      joiningpartydata = #{joiningpartydata,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      promise = #{promise,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      branch_id = #{branchId,jdbcType=VARCHAR},
+      vanguard_id = #{vanguardId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

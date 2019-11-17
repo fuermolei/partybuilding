@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="留白" />
+		<!-- 作者 -->
+		<meta name="revised" content="留白.v1, 2019/05/01" />
+		<!-- 定义页面的最新版本 -->
+		<meta name="description" content="网站简介" />
+		<!-- 网站简介 -->
+		<meta name="keywords" content="党,党建,党建系统" />
+		<title>党建工作系统</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="shortcut icon" th:href="@{/static/images/favicon.ico}"/>
+		<link rel="bookmark" th:href="@{/static/images/favicon.ico}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/base.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/fonts/iconfont.css}">
+		<script type="text/javascript" th:src="@{/static/framework/jquery-1.11.3.min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/js/base.js}"></script>
+		<link rel="stylesheet" type="text/css" th:href="@{/static/layui/css/layui.css}">
+	    <!--[if lt IE 9]>
+	      	<script th:src="@{/static/framework/html5shiv.min.js}"></script>
+	      	<script th:src="@{/static/framework/respond.min.js}"></script>
+	    <![endif]-->
+		<script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+		<script th:src="@{/static/framework/cframe.js}"></script><!-- 仅供所有子页面使用 -->
+		<script th:src="@{/static/framework/printThis.js}"></script><!-- 打印插件 -->
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/base_fontSize.css}"><!-- 内容页字体大小 -->
+		<!-- 公共样式 结束 -->
+		
+
+	</head>
+
+	<body>
+		<div class="cBody">
+			<div class="console">
+				<div class="layui-form-item">
+					<a class="layui-btn layui-btn-sm layui-btn-normal" onclick="printTable('dayindaju1')">打印</a>
+				</div>
+			</div>
+
+			<div class="layui-row" id="dayindaju1">
+				<table class="layui-table printTable">
+					<tbody th:object="${TPartymember}">
+						<tr>
+							<td class="printName" colspan="7">党员信息表</td>
+						</tr>
+						<tr>
+							<td class="printDis" colspan="7">
+								<span></span>
+								<span class="right"></span>
+								<span></span>
+							</td>
+						</tr>
+                        <tr>
+                            <th>姓名:</th>
+                            <td><p th:text="*{name}"></p></td>
+                            <th>年龄:</th>
+                            <td><p th:text="*{dateofbirth}"></p></td>
+                            <th>民族:</th>
+                            <td>汉</td>
+                            <td rowspan="3" width="100"><p><a target="_blank" th:href="*{pic}"><img border="0" th:src="*{pic}" />
+                        </a></p></td>
+                        </tr>
+
+                        <tr>
+                            <th>出生日期:</th>
+                            <td><p th:text="*{dateofbirth}"></p></td>
+                            <th>入党时间:</th>
+                            <td><p th:text="*{joiningpartydata}"></p></td>
+                            <th>联系方式:</th>
+                            <td><p th:text="*{phone}"></p></td>
+                        </tr>
+
+                        <tr>
+                            <th>性别:</th>
+                            <td><p th:text="*{sex}"></p></td>
+                            <th>所属支部:</th>
+                            <td><p th:text="*{branchId}"></p></td>
+                            <th>职务:</th>
+                            <td><p th:text="*{job}"></p></td>
+                        </tr>
+
+                        <tr>
+                            <th>身份证号:</th>
+                            <td><p th:text="*{idnumber}"></p></td>
+                            <th>先锋队:</th>
+                            <td><p th:text="*{vanguardId}"></p></td>
+                            <th>邮箱:</th>
+                            <td colspan="2"<p><a  target="_blank"  href="mailto:182******@qq.com?subject=Hello%20again">182*******@qq.com </a></p></td>
+                        </tr>
+
+                        <tr>
+                            <th height="160">承诺:</th>
+                            <td colspan="6">
+                                <p th:text="*{promise}"></p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th height="160">简介:</th>
+                            <td colspan="6">
+                                <p th:text="*{briefintroduction}"></p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th height="160">总结:</th>
+                            <td colspan="6">
+                                <p th:text="*{briefintroduction}"></p>
+                            </td>
+                        </tr>
+						<tr>
+							<td class="printOperator" colspan="7">
+								<span>经手人：张三</span>
+								<span class="right">打印日期：2019-05-01 10:24:03</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<script>
+			//打印方法
+		    function printTable(id){
+		    	$('#'+id).printThis({ importCss: true, importStyle: true });
+		    }
+		</script>
+	</body>
+
+</html>

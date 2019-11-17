@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+  <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+  <meta name="renderer" content="webkit">
+  <!--国产浏览器高速模式-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="留白" />
+  <!-- 作者 -->
+  <meta name="revised" content="留白.v1, 2019/05/01" />
+  <!-- 定义页面的最新版本 -->
+  <meta name="description" content="网站简介" />
+  <!-- 网站简介 -->
+  <meta name="keywords" content="党,党建,党建系统" />
+  <title>党建工作系统</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/static/layui/css/layui.css}">
+  <script type="text/javascript" th:src="@{/static/framework/jquery-1.11.3.min.js}" ></script>
+  <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+</head>
+<body class="layui-layout-body" style="overflow-y:scroll; overflow-x:scroll;">
+<form class="layui-form layui-form-pane1" action="/ActivityController/add" method="post" enctype="multipart/form-data" lay-filter="first">
+  <div class="" style="background-color:#efefef">
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+      <div class="layui-row layui-col-space5">
+        <div class="layui-fluid" id="LAY-component-grid-mobile-pc">
+          <div class="layui-row layui-col-space10	">
+            <div class="layui-col-xs6 layui-col-md9">
+              <!-- 填充内容 -->
+              <div class="layui-card">
+                <div class="layui-card-header"><h1 style="margin-left:2px">会务活动</h1></div>
+                <div class="layui-card-body"><div style="height:538px">
+                  <input type="hidden" id="author" name="author" value="admin">
+                  <input type="text" name="title" id="title" lay-verify="required|title" required placeholder="在此处输入标题" autocomplete="off" class="layui-input">
+                  <div id="editor" style="margin:12px 0"></div>
+                  <div id="editor2" style="margin:12px 0; border: 1px solid #ccc; height: 400px;">
+                    <p>请在此编辑您的内容...</p>
+                  </div>
+                  <input id="content" name="content" type="hidden" style="width:100%; height:200px;">
+                  <input type="text" id="remark" name="remark" lay-verify="required|title" required placeholder="结语" autocomplete="off" class="layui-input">
+                </div></div>
+              </div>
+            </div>
+            <div class="layui-col-xs6 layui-col-md3">
+              <div class="layui-card">
+                <div class="layui-card-header"><h1 style="margin-left:2px">操作</h1></div>
+                <div class="layui-card-body">
+                  <div class="layui-form-item" style="margin-left:-38px">
+                    <label class="layui-form-label">通知对象</label>
+                    <div class="layui-input-block">
+                      <input type="text" class="layui-input" lay-verify="required|title" onclick="getcolumn();" name="oobject" id="oobject" autocomplete="off">
+                    </div>
+                  </div>
+                  <span style="font-size:16px">标题图片</span>
+                  <div class="add-article-box-content" style="margin-bottom:30px">
+                    <div id="image" style="width:auto ;height:160px; background:#EEEEEE;">
+                      <img src="" style="width:auto;height:160px;" />
+                    </div>
+                    <input name="headImage" type="file" id="file"/>
+                    <script>
+                      document.getElementById('file').onchange = function() {
+                        var imgFile = this.files[0];
+                        var fr = new FileReader();
+                        fr.onload = function() {
+                          document.getElementById('image').getElementsByTagName('img')[0].src = fr.result;
+                        };
+                        fr.readAsDataURL(imgFile);
+                      };
+                    </script>
+                  </div>
+                  <span style="font-size:16px;margin-top:500px">会务时间</span>
+                  <input type="text" name="time" class="layui-input" id="time" lay-verify="required|title" autocomplete="off">
+                  <span style="font-size:16px;margin-top:500px">会务地点</span>
+                  <input type="text" name="place" class="layui-input" id="place" lay-verify="required|title" placeholder="请输入会务地点">
+                  <div class="layui-form-item">
+                    <div  style="margin-top:30px;text-align:center">
+                      <button class="layui-btn" lay-submit lay-filter="*" id="btn">立即提交</button>
+                      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+<script type="text/javascript" th:src="@{/static/js/wangEditor.min.js}"></script>
+<script>
+  layui.use('element', function(){
+    var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+    //监听导航点击
+    element.on('nav(demo)', function(elem){
+      //console.log(elem)
+      layer.msg(elem.text());
+    });
+  });
+  //JavaScript代码区域
+  layui.use('form', function(){
+    var form = layui.form;
+    //事件监听
+    form.on('select(interest)', function(data){
+      console.log('select.interest: ', this, data);
+    });
+
+  });
+  layui.use('laydate', function(){
+    var laydate = layui.laydate;
+    //单控件
+    laydate.render({
+      elem: '#time'
+      //,format: 'yyyy年MM月dd日'
+      //,value: new Date(1989,9,14)
+      ,isInitValue: false
+      ,format: 'yyyy年MM月dd日 HH时mm分ss秒'
+      ,value: new Date()
+      ,theme: '#393D49'
+      ,trigger: 'click'
+      ,ready: function(date){
+        console.log(date);
+      }
+      ,done: function(value, date, endDate){
+        console.log(value, date, endDate);
+      }
+    });
+  });
+  var E = window.wangEditor
+  var editor = new E('#editor', '#editor2')
+  //editor.customConfig.uploadImgShowBase64 = true
+  // 或者 var editor = new E( document.getElementById('editor') )
+  //$(function(){
+  //开启debug模式
+  editor.customConfig.debug = true;
+  // 关闭粘贴内容中的样式
+  editor.customConfig.pasteFilterStyle = false
+  // 忽略粘贴内容中的图片
+  editor.customConfig.pasteIgnoreImg = false
+  /* 处理上传图片的controller路径 */  //配置服务器端地址
+  editor.customConfig.uploadImgServer = '/uploadFile/wangEditUploadImag';//设置上传文件的服务器路径
+  /* 定义上传图片的默认名字 */
+  editor.customConfig.uploadFileName ='files';//设置文件上传的参数名称
+  // 限制一次最多上传 10 张图片
+  editor.customConfig.uploadImgMaxLength = 10;
+  editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024; // 将图片大小限制为 3M
+  editor.customConfig.uploadImgHooks = {
+    fail:function (xhr, editor, result) {
+      // 图片上传并返回结果，但图片插入错误时触发
+      alert(result.msg);
+    },
+    success: function(xhr, editor, result) {
+
+    }
+  }
+  var content = $('#content')
+  editor.customConfig.onchange = function (html) {
+    content.val(html);
+  }
+  editor.create();
+  function getcolumn() {
+    layui.use('layer', function(data) {
+      var layer = layui.layer;
+
+      //iframe层-父子操作
+      updateFrame = layer.open({
+        title: "选择通知对象",
+        type: 2,
+        area: ['32%', '60%'],
+        scrollbar: false,  //默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+        maxmin: true,
+        content: "/ActivityController/tree"
+      });
+    });
+  }
+  function ChooseAdidValues(v) {
+    if (v != "") {
+      $('#oobject').val(v);
+    }
+  }
+</script>
+</body>
+</html>
