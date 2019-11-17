@@ -22,12 +22,8 @@
 </head>
 <body class="layui-layout-body" style="overflow-y:scroll; overflow-x:scroll;">
 <form class="layui-form layui-form-pane1" action="/PartymemberController/edit" method="post" enctype="multipart/form-data" lay-filter="first" th:object="${TPartymember}">
-<<<<<<< HEAD
-  <div class="layui-col-xs6 layui-col-md6">
-=======
   <!--左边-->
   <div class="layui-col-xs4 layui-col-md4">
->>>>>>> e6e785f00605ec76230aab8dd0ad50b46b69c670
     <div class="layui-form-item" style="width: 520px;margin-bottom: -2px;margin-top: 25px">
       <input id="id" name="id" type="hidden" th:field="*{id}"/>
     </div>
@@ -47,16 +43,6 @@
       <label class="layui-form-label">性别</label>
       <div class="layui-input-block">
         <input type="hidden" id="sex2" name="sex2" th:value="*{sex}">
-<<<<<<< HEAD
-        <input type="radio" name="sex" id="man" value="男" title="男">
-        <input type="radio" name="sex" id="woman" value="女" title="女">
-      </div>
-    </div>
-    <div class="layui-form-item" style="width: 520px;">
-      <label class="layui-form-label">职务</label>
-      <div class="layui-input-block">
-        <input type="text" id="job" name="job" th:value="*{job}" lay-verify="required|title" required placeholder="请输入职务" autocomplete="off" class="layui-input">
-=======
         <input type="radio" name="sex"  value="男" title="男" checked>
         <input type="radio" name="sex" value="女" title="女">
       </div>
@@ -65,31 +51,17 @@
       <label class="layui-form-label">现任党内职务</label>
       <div class="layui-input-block">
         <input type="text" id="job" name="job"  placeholder="请输入现任党内职务" autocomplete="off" class="layui-input">
->>>>>>> e6e785f00605ec76230aab8dd0ad50b46b69c670
       </div>
     </div>
     <div class="layui-form-item" style="width: 520px;">
       <label class="layui-form-label">出生年月</label>
       <div class="layui-input-block">
-<<<<<<< HEAD
-        <input type="text" name="dateofbirth" th:value="*{dateofbirth}" class="layui-input" id="dateofbirth" lay-verify="required|title">
-=======
         <input type="text" name="dateofbirth" class="layui-input-time layui-input" id="dateofbirth" lay-verify="required|title">
->>>>>>> e6e785f00605ec76230aab8dd0ad50b46b69c670
       </div>
     </div>
     <div class="layui-form-item" style="width: 520px;">
       <label class="layui-form-label">联系方式</label>
       <div class="layui-input-block">
-<<<<<<< HEAD
-        <input type="text" id="phone" name="phone" th:field="*{phone}" lay-verify="required|title" required placeholder="请输入联系方式" autocomplete="off" class="layui-input">
-      </div>
-    </div>
-    <div class="layui-form-item" style="width: 520px;">
-      <label class="layui-form-label">入党时间</label>
-      <div class="layui-input-block">
-        <input type="text" name="joiningpartydata" th:value="*{joiningpartydata}" class="layui-input" id="joiningpartydata" lay-verify="required|title">
-=======
         <input type="text" id="phone" name="phone" lay-verify="required|title" required placeholder="请输入手机号或电话" autocomplete="off" class="layui-input">
       </div>
     </div>
@@ -121,17 +93,12 @@
       <label class="layui-form-label">院校及专业</label>
       <div class="layui-input-block">
         <input type="text" id="major" name="major"  placeholder="请输入毕业院校及专业" autocomplete="off" class="layui-input">
->>>>>>> e6e785f00605ec76230aab8dd0ad50b46b69c670
       </div>
     </div>
     <div class="layui-form-item" style="width: 520px;">
       <label class="layui-form-label">承诺</label>
       <div class="layui-input-block">
-<<<<<<< HEAD
-        <input type="text" id="promise" name="promise" th:field="*{promise}" placeholder="请输入承诺" autocomplete="off" class="layui-input">
-=======
         <input type="text" id="promise" name="promise" placeholder="请输入承诺" autocomplete="off" class="layui-input">
->>>>>>> e6e785f00605ec76230aab8dd0ad50b46b69c670
       </div>
     </div>
     <div class="layui-form-item" style="width: 520px;">
