@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+  <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+  <meta name="renderer" content="webkit">
+  <!--国产浏览器高速模式-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="留白" />
+  <!-- 作者 -->
+  <meta name="revised" content="留白.v1, 2019/05/01" />
+  <!-- 定义页面的最新版本 -->
+  <meta name="description" content="网站简介" />
+  <!-- 网站简介 -->
+  <meta name="keywords" content="党,党建,党建系统" />
+  <title>党建工作系统</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/static/layui/css/layui.css}">
+  <script type="text/javascript" th:src="@{/static/framework/jquery-1.11.3.min.js}" ></script>
+  <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+</head>
+<body class="layui-layout-body" style="overflow-y:scroll; overflow-x:scroll;">
+<form class="layui-form layui-form-pane1"  enctype="multipart/form-data" lay-filter="first">
+  <div class="layui-col-xs6 layui-col-md6">
+    <div class="layui-form-item" style="width: 520px;margin-bottom: -2px;margin-top: 25px">
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">先锋站名称</label>
+      <div class="layui-input-block">
+        <input type="text" id="name" name="name" lay-verify="required|title" required placeholder="请输入先锋站名称" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">备注</label>
+      <div class="layui-input-block">
+        <textarea name="remarks" placeholder="请输入备注信息" class="layui-textarea"></textarea>
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 360px;">
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="add" id="add">添加</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+    layui.use(['form', 'layedit'] ,function(){
+        var $ = layui.jquery
+            ,form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit;
+        var index = parent.layer.getFrameIndex(window.name); //修改成功的时候点击 确定 会关闭子窗口，这里获取一下子窗口
+        form.render();
+        //监听提交
+        form.on('submit(add)', function(data){ //这块要跟表单中的lay-filter="add"对应
+            //获取checkbox[name='roles']的值
+            var arr = new Array();
+            $("input:checkbox[name='roles']:checked").each(function(i){
+                arr[i] = $(this).val();
+            });
+            data.field.roles = arr.join(",");//将数组合并成字符串
+            $.ajax({
+                url: "/VanguardController/add",
+                type: "post",
+                async: false,   //不要让它异步提交
+                data: data.field,
+                dataType: "json",
+                success: function (data) {
+                    if(data.code==200){
+                        layer.alert("添加先锋站成功",{icon: 1},function () {
+                            layer.close(layer.index);
+                            window.parent.location.reload();    //重新加载父页面，进行数据刷新
+                        });
+                    } else{
+                        layer.alert("添加先锋站失败",{icon: 2,time:2000});
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

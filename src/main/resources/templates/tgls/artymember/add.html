@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+  <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+  <meta name="renderer" content="webkit">
+  <!--国产浏览器高速模式-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="留白" />
+  <!-- 作者 -->
+  <meta name="revised" content="留白.v1, 2019/05/01" />
+  <!-- 定义页面的最新版本 -->
+  <meta name="description" content="网站简介" />
+  <!-- 网站简介 -->
+  <meta name="keywords" content="党,党建,党建系统" />
+  <title>党建工作系统</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/static/layui/css/layui.css}">
+  <script type="text/javascript" th:src="@{/static/framework/jquery-1.11.3.min.js}" ></script>
+  <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+</head>
+<body class="layui-layout-body" style="overflow-y:scroll; overflow-x:scroll;">
+<form class="layui-form layui-form-pane1" action="/PartymemberController/add" method="post" enctype="multipart/form-data" lay-filter="first">
+<!--左边-->
+  <div class="layui-col-xs4 layui-col-md4">
+       <div class="layui-form-item" style="width: 520px;margin-bottom: -2px;margin-top: 25px">
+    </div>
+       <div class="layui-form-item" style="width: 520px;">
+         <label class="layui-form-label">姓名</label>
+         <div class="layui-input-block">
+           <input type="text" id="name" name="name" lay-verify="required|title" required placeholder="请输入姓名" autocomplete="off" class="layui-input">
+         </div>
+       </div>
+       <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">身份证号</label>
+        <div class="layui-input-block">
+          <input type="text" id="idnumber" name="idnumber" lay-verify="required|title" required placeholder="请输入身份证号" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+       <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+          <input type="radio" name="sex" value="男" title="男" checked>
+          <input type="radio" name="sex" value="女" title="女">
+        </div>
+      </div>
+       <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">现任党内职务</label>
+      <div class="layui-input-block">
+        <input type="text" id="job" name="job"  placeholder="请输入现任党内职务" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+       <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">出生年月</label>
+        <div class="layui-input-block">
+          <input type="text" name="dateofbirth" class="layui-input-time layui-input" id="dateofbirth" lay-verify="required|title">
+        </div>
+       </div>
+       <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">联系方式</label>
+        <div class="layui-input-block">
+          <input type="text" id="phone" name="phone" lay-verify="required|title" required placeholder="请输入手机号或电话" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+       <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">所在小组</label>
+      <div class="layui-input-block">
+        <input type="text" id="ingroup" name="ingroup" placeholder="请输入所在小组" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+       <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">工作单位及职务</label>
+      <div class="layui-input-block">
+        <input type="text" id="ocupertino" name="ocupertino"  placeholder="请输入工作单位及职务" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+       <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">组织关系所在单位</label>
+      <div class="layui-input-block">
+        <input type="text" id="relationship" name="relationship"  placeholder="请输入组织关系所在单位" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+       <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">学历学位</label>
+      <div class="layui-input-block">
+        <input type="text" id="degree" name="degree"  placeholder="请输入学历学位" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+       <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">院校及专业</label>
+      <div class="layui-input-block">
+        <input type="text" id="major" name="major"  placeholder="请输入毕业院校及专业" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+       <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">承诺</label>
+        <div class="layui-input-block">
+          <input type="text" id="promise" name="promise" placeholder="请输入承诺" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+       <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">简介</label>
+        <div class="layui-input-block">
+          <textarea name="briefintroduction" placeholder="请输入简介内容" class="layui-textarea"></textarea>
+        </div>
+      </div>
+  </div>
+<!--中间-->
+  <div class="layui-col-xs4 layui-col-md4">
+    <div class="layui-form-item" style="width: 520px;margin-bottom: -2px;margin-top: 25px">
+    </div>
+      <!--开始-->
+      <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">曾用名</label>
+        <div class="layui-input-block">
+          <input type="text" id="usedname" name="usedname"  placeholder="选择性填写" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">民族</label>
+        <div class="layui-input-block">
+          <input type="text" id="nationality" name="nationality" lay-verify="required|title" required placeholder="请输入民族" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">籍贯</label>
+        <div class="layui-input-block">
+          <input type="text" id="nativeplace" name="nativeplace" lay-verify="required|title" required placeholder="请输入籍贯" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">户籍所在地</label>
+      <div class="layui-input-block">
+        <input type="text" id="domicileplace" name="domicileplace" lay-verify="required|title" required placeholder="请输入户籍所在地" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+      <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">现居住地址</label>
+      <div class="layui-input-block">
+        <input type="text" id="nowadd" name="nowadd" lay-verify="required|title" required placeholder="请输入现居住地址" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+      <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">QQ或微信号</label>
+      <div class="layui-input-block">
+        <input type="text" id="wechat" name="wechat"  placeholder="请输入QQ号或微信号" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+      <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">教育程度</label>
+      <div class="layui-input-block">
+        <input type="text" id="degreestatus" name="degreestatus" lay-verify="required|title" required placeholder="请输入教育程度" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+      <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">婚姻状况</label>
+        <div class="layui-input-block">
+          <input type="text" id="maritalstatus" name="maritalstatus" lay-verify="required|title" required placeholder="已婚/未婚/离婚/复婚" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">入党时间</label>
+        <div class="layui-input-block">
+          <input type="text" name="joiningpartydata" class="layui-input-time layui-input" id="joiningpartydata" lay-verify="required|title">
+        </div>
+      </div>
+      <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">入党介绍人</label>
+      <div class="layui-input-block">
+        <input type="text" id="referrer" name="referrer"  placeholder="选择性填写" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+      <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">入党时所在支部</label>
+      <div class="layui-input-block">
+        <select name="beginbranch" lay-filter="interest" id="beginbranch">
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+      <div class="layui-form-item" style="width: 520px;">
+        <label class="layui-form-label">转正时间</label>
+        <div class="layui-input-block">
+          <input type="text" name="positivetime" class="layui-input-time layui-input" id="positivetime" lay-verify="required|title">
+        </div>
+      </div>
+      <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">转正时所在支部</label>
+      <div class="layui-input-block">
+        <select name="changedbranch" lay-filter="interest" id="changedbranch">
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+      <!--结束-->
+  </div>
+<!--右边-->
+  <div class="layui-col-xs4 layui-col-md4">
+    <div class="layui-form-item" style="width: 520px;margin-bottom: -2px;margin-top: 25px">
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">照片</label>
+      <div class="layui-input-block">
+        <div id="pic" style="width:auto ;height:160px; background:#EEEEEE;">
+          <img src="" style="width:auto;height:160px;" />
+        </div>
+        <input name="headImage" type="file" id="file"/>
+        <script>
+          document.getElementById('file').onchange = function() {
+            var imgFile = this.files[0];
+            var fr = new FileReader();
+            fr.onload = function() {
+              document.getElementById('pic').getElementsByTagName('img')[0].src = fr.result;
+            };
+            fr.readAsDataURL(imgFile);
+          };
+        </script>
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+    <label class="layui-form-label">所属支部</label>
+    <div class="layui-input-block">
+      <select name="branchId" lay-filter="interest" id="branchId">
+        <option value=""></option>
+      </select>
+    </div>
+  </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">进入党支部时间</label>
+      <div class="layui-input-block">
+        <input type="text" name="joinedbranchdate" class="layui-input-time layui-input" id="joinedbranchdate" lay-verify="required|title">
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">先锋站</label>
+      <div class="layui-input-block">
+        <select name="vanguardId" lay-filter="interest" id="vanguardId">
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">医疗保险</label>
+      <div class="layui-input-block">
+        <input type="text" id="medicalinsurance" name="medicalinsurance" lay-verify="required|title" required placeholder="已参保/未参保/断交" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">养老保险</label>
+      <div class="layui-input-block">
+        <input type="text" id="oldinsurance" name="oldinsurance" lay-verify="required|title" required placeholder="已参保/未参保/断交" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 520px;">
+      <label class="layui-form-label">备注</label>
+      <div class="layui-input-block">
+        <textarea name="remarks" placeholder="请输入备注信息" class="layui-textarea"></textarea>
+      </div>
+    </div>
+    <div class="layui-form-item" style="width: 360px;">
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="add" id="add">提交</button>
+      </div>
+    </div>
+
+  </div>
+</form>
+<script>
+    layui.use(['form','laydate'], function(){
+      var laydate = layui.laydate;
+      var form = layui.form;
+      //多控件
+      $('.layui-input-time').each(function(){
+          laydate.render({
+              elem: this
+              //,format: 'yyyy年MM月dd日'
+              //,value: new Date(1989,9,14)
+              ,isInitValue: false
+              ,format: 'yyyyMMdd'
+              ,value: new Date()
+              ,theme: '#393D49'
+              ,trigger: 'click'
+              ,ready: function(date){
+                  console.log(date);
+              }
+              ,done: function(value, date, endDate){
+                  console.log(value, date, endDate);
+              }
+          });
+      })
+
+    });
+    getbranchId();
+    getvanguardId();
+    getbeginbranch();
+    getchangedbranch();
+    function getbranchId() {
+      $.ajax({
+        url: '/BranchController/getAll',
+        dataType: "json",
+        type: "POST",
+        async: false,
+        success: function(data) {
+          //后台服务返回数据，重新加载数据
+          if (data.length == 0) {
+            return;
+          }
+          var html = "<option value=''>请选择支部</option>";
+          $.each(data, function(idx, obj) {
+            html += "<option value='"+obj.id+"'>"+obj.name+"</option>";
+          });
+          $("#branchId").empty().append(html);
+        }
+      });
+    }
+    function getvanguardId() {
+      $.ajax({
+        url: '/VanguardController/getAll',
+        dataType: "json",
+        type: "POST",
+        async: false,
+        success: function(data) {
+          //后台服务返回数据，重新加载数据
+          if (data.length == 0) {
+            return;
+          }
+          var html = "<option value=''>请选择先锋站</option>";
+          $.each(data, function(idx, obj) {
+            html += "<option value='"+obj.id+"'>"+obj.name+"</option>";
+          });
+          $("#vanguardId").empty().append(html);
+        }
+      });
+    }
+    function getbeginbranch() {
+        $.ajax({
+            url: '/BranchController/getAll',
+            dataType: "json",
+            type: "POST",
+            async: false,
+            success: function(data) {
+                //后台服务返回数据，重新加载数据
+                if (data.length == 0) {
+                    return;
+                }
+                var html = "<option value=''>请选择支部</option>";
+                $.each(data, function(idx, obj) {
+                    html += "<option value='"+obj.id+"'>"+obj.name+"</option>";
+                });
+                $("#beginbranch").empty().append(html);
+            }
+        });
+    }
+    function getchangedbranch() {
+        $.ajax({
+            url: '/BranchController/getAll',
+            dataType: "json",
+            type: "POST",
+            async: false,
+            success: function(data) {
+                //后台服务返回数据，重新加载数据
+                if (data.length == 0) {
+                    return;
+                }
+                var html = "<option value=''>请选择支部</option>";
+                $.each(data, function(idx, obj) {
+                    html += "<option value='"+obj.id+"'>"+obj.name+"</option>";
+                });
+                $("#changedbranch").empty().append(html);
+            }
+        });
+    }
+</script>
+</body>
+</html>

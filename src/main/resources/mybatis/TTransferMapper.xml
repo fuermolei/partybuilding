@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pb.partybuilding.mapping.TTransferMapper" >
+  <resultMap id="BaseResultMap" type="com.pb.partybuilding.domain.TTransfer" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="usedname" property="usedname" jdbcType="VARCHAR" />
+    <result column="idnumber" property="idnumber" jdbcType="VARCHAR" />
+    <result column="briefintroduction" property="briefintroduction" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="dateofbirth" property="dateofbirth" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="degreestatus" property="degreestatus" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="VARCHAR" />
+    <result column="joiningpartydata" property="joiningpartydata" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="promise" property="promise" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="branch_id" property="branchId" jdbcType="VARCHAR" />
+    <result column="vanguard_id" property="vanguardId" jdbcType="VARCHAR" />
+    <result column="nationality" property="nationality" jdbcType="VARCHAR" />
+    <result column="nativeplace" property="nativeplace" jdbcType="VARCHAR" />
+    <result column="medicalinsurance" property="medicalinsurance" jdbcType="VARCHAR" />
+    <result column="oldinsurance" property="oldinsurance" jdbcType="VARCHAR" />
+    <result column="maritalstatus" property="maritalstatus" jdbcType="VARCHAR" />
+    <result column="positivetime" property="positivetime" jdbcType="VARCHAR" />
+    <result column="workdate" property="workdate" jdbcType="VARCHAR" />
+    <result column="beginbranch" property="beginbranch" jdbcType="VARCHAR" />
+    <result column="changedbranch" property="changedbranch" jdbcType="VARCHAR" />
+    <result column="referrer" property="referrer" jdbcType="VARCHAR" />
+    <result column="joinedbranchdate" property="joinedbranchdate" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="ocupertino" property="ocupertino" jdbcType="VARCHAR" />
+    <result column="relationship" property="relationship" jdbcType="VARCHAR" />
+    <result column="domicileplace" property="domicileplace" jdbcType="VARCHAR" />
+    <result column="nowadd" property="nowadd" jdbcType="VARCHAR" />
+    <result column="wechat" property="wechat" jdbcType="VARCHAR" />
+    <result column="outofdate" property="outofdate" jdbcType="VARCHAR" />
+    <result column="outofplace" property="outofplace" jdbcType="VARCHAR" />
+    <result column="outoftype" property="outoftype" jdbcType="VARCHAR" />
+    <result column="outofreason" property="outofreason" jdbcType="VARCHAR" />
+    <result column="avtivenum" property="avtivenum" jdbcType="VARCHAR" />
+    <result column="contactstatus" property="contactstatus" jdbcType="VARCHAR" />
+    <result column="outcontect" property="outcontect" jdbcType="VARCHAR" />
+    <result column="incontect" property="incontect" jdbcType="VARCHAR" />
+    <result column="inunit" property="inunit" jdbcType="VARCHAR" />
+    <result column="lostdate" property="lostdate" jdbcType="VARCHAR" />
+    <result column="abroaddate" property="abroaddate" jdbcType="VARCHAR" />
+    <result column="abroadreason" property="abroadreason" jdbcType="VARCHAR" />
+    <result column="abroadstatus" property="abroadstatus" jdbcType="VARCHAR" />
+    <result column="partyship" property="partyship" jdbcType="VARCHAR" />
+    <result column="backdate" property="backdate" jdbcType="VARCHAR" />
+    <result column="ingroup" property="ingroup" jdbcType="VARCHAR" />
+    <result column="recoverstatus" property="recoverstatus" jdbcType="VARCHAR" />
+    <result column="backups" property="backups" jdbcType="VARCHAR" />
+    <result column="operationtime" property="operationtime" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, usedname, idnumber, briefintroduction, sex, dateofbirth, phone, pic, degreestatus, 
+    degree, joiningpartydata, job, promise, remarks, (select name from t_branch where id=t.branch_id) branch_id,(select name from t_vanguard where id=t.vanguard_id) vanguard_id, nationality,
+    nativeplace, medicalinsurance, oldinsurance, maritalstatus, positivetime, workdate, 
+    beginbranch, changedbranch, referrer, joinedbranchdate, major, ocupertino, relationship, 
+    domicileplace, nowadd, wechat, outofdate, outofplace, outoftype, outofreason, avtivenum, 
+    contactstatus, outcontect, incontect, inunit, lostdate, abroaddate, abroadreason, 
+    abroadstatus, partyship, backdate, ingroup, recoverstatus, backups, operationtime, 
+    operator
+  </sql>
+
+  <sql id="Base_Column_List2" >
+    id, name, usedname, idnumber, briefintroduction, sex, dateofbirth, phone, pic, degreestatus,
+    degree, joiningpartydata, job, promise, remarks, branch_id, vanguard_id, nationality,
+    nativeplace, medicalinsurance, oldinsurance, maritalstatus, positivetime, workdate,
+    beginbranch, changedbranch, referrer, joinedbranchdate, major, ocupertino, relationship,
+    domicileplace, nowadd, wechat, outofdate, outofplace, outoftype, outofreason, avtivenum,
+    contactstatus, outcontect, incontect, inunit, lostdate, abroaddate, abroadreason,
+    abroadstatus, partyship, backdate, ingroup, recoverstatus, backups, operationtime,
+    operator
+  </sql>
+
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pb.partybuilding.domain.TTransferExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_transfer t
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_transfer
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_transfer
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.pb.partybuilding.domain.TTransferExample" >
+    delete from t_transfer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pb.partybuilding.domain.TTransfer" >
+    insert into t_transfer (id, name, usedname, 
+      idnumber, briefintroduction, sex, 
+      dateofbirth, phone, pic, 
+      degreestatus, degree, joiningpartydata, 
+      job, promise, remarks, 
+      branch_id, vanguard_id, nationality, 
+      nativeplace, medicalinsurance, oldinsurance, 
+      maritalstatus, positivetime, workdate, 
+      beginbranch, changedbranch, referrer, 
+      joinedbranchdate, major, ocupertino, 
+      relationship, domicileplace, nowadd, 
+      wechat, outofdate, outofplace, 
+      outoftype, outofreason, avtivenum, 
+      contactstatus, outcontect, incontect, 
+      inunit, lostdate, abroaddate, 
+      abroadreason, abroadstatus, partyship, 
+      backdate, ingroup, recoverstatus, 
+      backups, operationtime, operator
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{usedname,jdbcType=VARCHAR}, 
+      #{idnumber,jdbcType=VARCHAR}, #{briefintroduction,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{dateofbirth,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
+      #{degreestatus,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, #{joiningpartydata,jdbcType=VARCHAR}, 
+      #{job,jdbcType=VARCHAR}, #{promise,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{branchId,jdbcType=VARCHAR}, #{vanguardId,jdbcType=VARCHAR}, #{nationality,jdbcType=VARCHAR}, 
+      #{nativeplace,jdbcType=VARCHAR}, #{medicalinsurance,jdbcType=VARCHAR}, #{oldinsurance,jdbcType=VARCHAR}, 
+      #{maritalstatus,jdbcType=VARCHAR}, #{positivetime,jdbcType=VARCHAR}, #{workdate,jdbcType=VARCHAR}, 
+      #{beginbranch,jdbcType=VARCHAR}, #{changedbranch,jdbcType=VARCHAR}, #{referrer,jdbcType=VARCHAR}, 
+      #{joinedbranchdate,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{ocupertino,jdbcType=VARCHAR}, 
+      #{relationship,jdbcType=VARCHAR}, #{domicileplace,jdbcType=VARCHAR}, #{nowadd,jdbcType=VARCHAR}, 
+      #{wechat,jdbcType=VARCHAR}, #{outofdate,jdbcType=VARCHAR}, #{outofplace,jdbcType=VARCHAR}, 
+      #{outoftype,jdbcType=VARCHAR}, #{outofreason,jdbcType=VARCHAR}, #{avtivenum,jdbcType=VARCHAR}, 
+      #{contactstatus,jdbcType=VARCHAR}, #{outcontect,jdbcType=VARCHAR}, #{incontect,jdbcType=VARCHAR}, 
+      #{inunit,jdbcType=VARCHAR}, #{lostdate,jdbcType=VARCHAR}, #{abroaddate,jdbcType=VARCHAR}, 
+      #{abroadreason,jdbcType=VARCHAR}, #{abroadstatus,jdbcType=VARCHAR}, #{partyship,jdbcType=VARCHAR}, 
+      #{backdate,jdbcType=VARCHAR}, #{ingroup,jdbcType=VARCHAR}, #{recoverstatus,jdbcType=VARCHAR}, 
+      #{backups,jdbcType=VARCHAR}, #{operationtime,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pb.partybuilding.domain.TTransfer" >
+    insert into t_transfer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="usedname != null" >
+        usedname,
+      </if>
+      <if test="idnumber != null" >
+        idnumber,
+      </if>
+      <if test="briefintroduction != null" >
+        briefintroduction,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="dateofbirth != null" >
+        dateofbirth,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="degreestatus != null" >
+        degreestatus,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+      <if test="joiningpartydata != null" >
+        joiningpartydata,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="promise != null" >
+        promise,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="branchId != null" >
+        branch_id,
+      </if>
+      <if test="vanguardId != null" >
+        vanguard_id,
+      </if>
+      <if test="nationality != null" >
+        nationality,
+      </if>
+      <if test="nativeplace != null" >
+        nativeplace,
+      </if>
+      <if test="medicalinsurance != null" >
+        medicalinsurance,
+      </if>
+      <if test="oldinsurance != null" >
+        oldinsurance,
+      </if>
+      <if test="maritalstatus != null" >
+        maritalstatus,
+      </if>
+      <if test="positivetime != null" >
+        positivetime,
+      </if>
+      <if test="workdate != null" >
+        workdate,
+      </if>
+      <if test="beginbranch != null" >
+        beginbranch,
+      </if>
+      <if test="changedbranch != null" >
+        changedbranch,
+      </if>
+      <if test="referrer != null" >
+        referrer,
+      </if>
+      <if test="joinedbranchdate != null" >
+        joinedbranchdate,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="ocupertino != null" >
+        ocupertino,
+      </if>
+      <if test="relationship != null" >
+        relationship,
+      </if>
+      <if test="domicileplace != null" >
+        domicileplace,
+      </if>
+      <if test="nowadd != null" >
+        nowadd,
+      </if>
+      <if test="wechat != null" >
+        wechat,
+      </if>
+      <if test="outofdate != null" >
+        outofdate,
+      </if>
+      <if test="outofplace != null" >
+        outofplace,
+      </if>
+      <if test="outoftype != null" >
+        outoftype,
+      </if>
+      <if test="outofreason != null" >
+        outofreason,
+      </if>
+      <if test="avtivenum != null" >
+        avtivenum,
+      </if>
+      <if test="contactstatus != null" >
+        contactstatus,
+      </if>
+      <if test="outcontect != null" >
+        outcontect,
+      </if>
+      <if test="incontect != null" >
+        incontect,
+      </if>
+      <if test="inunit != null" >
+        inunit,
+      </if>
+      <if test="lostdate != null" >
+        lostdate,
+      </if>
+      <if test="abroaddate != null" >
+        abroaddate,
+      </if>
+      <if test="abroadreason != null" >
+        abroadreason,
+      </if>
+      <if test="abroadstatus != null" >
+        abroadstatus,
+      </if>
+      <if test="partyship != null" >
+        partyship,
+      </if>
+      <if test="backdate != null" >
+        backdate,
+      </if>
+      <if test="ingroup != null" >
+        ingroup,
+      </if>
+      <if test="recoverstatus != null" >
+        recoverstatus,
+      </if>
+      <if test="backups != null" >
+        backups,
+      </if>
+      <if test="operationtime != null" >
+        operationtime,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="usedname != null" >
+        #{usedname,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null" >
+        #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="briefintroduction != null" >
+        #{briefintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateofbirth != null" >
+        #{dateofbirth,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="degreestatus != null" >
+        #{degreestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="joiningpartydata != null" >
+        #{joiningpartydata,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="promise != null" >
+        #{promise,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="branchId != null" >
+        #{branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="vanguardId != null" >
+        #{vanguardId,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalinsurance != null" >
+        #{medicalinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="oldinsurance != null" >
+        #{oldinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalstatus != null" >
+        #{maritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="positivetime != null" >
+        #{positivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="workdate != null" >
+        #{workdate,jdbcType=VARCHAR},
+      </if>
+      <if test="beginbranch != null" >
+        #{beginbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="changedbranch != null" >
+        #{changedbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="referrer != null" >
+        #{referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="joinedbranchdate != null" >
+        #{joinedbranchdate,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="ocupertino != null" >
+        #{ocupertino,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null" >
+        #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="domicileplace != null" >
+        #{domicileplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nowadd != null" >
+        #{nowadd,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="outofdate != null" >
+        #{outofdate,jdbcType=VARCHAR},
+      </if>
+      <if test="outofplace != null" >
+        #{outofplace,jdbcType=VARCHAR},
+      </if>
+      <if test="outoftype != null" >
+        #{outoftype,jdbcType=VARCHAR},
+      </if>
+      <if test="outofreason != null" >
+        #{outofreason,jdbcType=VARCHAR},
+      </if>
+      <if test="avtivenum != null" >
+        #{avtivenum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactstatus != null" >
+        #{contactstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outcontect != null" >
+        #{outcontect,jdbcType=VARCHAR},
+      </if>
+      <if test="incontect != null" >
+        #{incontect,jdbcType=VARCHAR},
+      </if>
+      <if test="inunit != null" >
+        #{inunit,jdbcType=VARCHAR},
+      </if>
+      <if test="lostdate != null" >
+        #{lostdate,jdbcType=VARCHAR},
+      </if>
+      <if test="abroaddate != null" >
+        #{abroaddate,jdbcType=VARCHAR},
+      </if>
+      <if test="abroadreason != null" >
+        #{abroadreason,jdbcType=VARCHAR},
+      </if>
+      <if test="abroadstatus != null" >
+        #{abroadstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="partyship != null" >
+        #{partyship,jdbcType=VARCHAR},
+      </if>
+      <if test="backdate != null" >
+        #{backdate,jdbcType=VARCHAR},
+      </if>
+      <if test="ingroup != null" >
+        #{ingroup,jdbcType=VARCHAR},
+      </if>
+      <if test="recoverstatus != null" >
+        #{recoverstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="backups != null" >
+        #{backups,jdbcType=VARCHAR},
+      </if>
+      <if test="operationtime != null" >
+        #{operationtime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pb.partybuilding.domain.TTransferExample" resultType="java.lang.Integer" >
+    select count(*) from t_transfer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_transfer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usedname != null" >
+        usedname = #{record.usedname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idnumber != null" >
+        idnumber = #{record.idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.briefintroduction != null" >
+        briefintroduction = #{record.briefintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateofbirth != null" >
+        dateofbirth = #{record.dateofbirth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic != null" >
+        pic = #{record.pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degreestatus != null" >
+        degreestatus = #{record.degreestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degree != null" >
+        degree = #{record.degree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joiningpartydata != null" >
+        joiningpartydata = #{record.joiningpartydata,jdbcType=VARCHAR},
+      </if>
+      <if test="record.job != null" >
+        job = #{record.job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promise != null" >
+        promise = #{record.promise,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.branchId != null" >
+        branch_id = #{record.branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vanguardId != null" >
+        vanguard_id = #{record.vanguardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nationality != null" >
+        nationality = #{record.nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nativeplace != null" >
+        nativeplace = #{record.nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicalinsurance != null" >
+        medicalinsurance = #{record.medicalinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldinsurance != null" >
+        oldinsurance = #{record.oldinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maritalstatus != null" >
+        maritalstatus = #{record.maritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positivetime != null" >
+        positivetime = #{record.positivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workdate != null" >
+        workdate = #{record.workdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beginbranch != null" >
+        beginbranch = #{record.beginbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changedbranch != null" >
+        changedbranch = #{record.changedbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referrer != null" >
+        referrer = #{record.referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joinedbranchdate != null" >
+        joinedbranchdate = #{record.joinedbranchdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.major != null" >
+        major = #{record.major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ocupertino != null" >
+        ocupertino = #{record.ocupertino,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationship != null" >
+        relationship = #{record.relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="record.domicileplace != null" >
+        domicileplace = #{record.domicileplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nowadd != null" >
+        nowadd = #{record.nowadd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechat != null" >
+        wechat = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outofdate != null" >
+        outofdate = #{record.outofdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outofplace != null" >
+        outofplace = #{record.outofplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outoftype != null" >
+        outoftype = #{record.outoftype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outofreason != null" >
+        outofreason = #{record.outofreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avtivenum != null" >
+        avtivenum = #{record.avtivenum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactstatus != null" >
+        contactstatus = #{record.contactstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outcontect != null" >
+        outcontect = #{record.outcontect,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incontect != null" >
+        incontect = #{record.incontect,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inunit != null" >
+        inunit = #{record.inunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostdate != null" >
+        lostdate = #{record.lostdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.abroaddate != null" >
+        abroaddate = #{record.abroaddate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.abroadreason != null" >
+        abroadreason = #{record.abroadreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.abroadstatus != null" >
+        abroadstatus = #{record.abroadstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partyship != null" >
+        partyship = #{record.partyship,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backdate != null" >
+        backdate = #{record.backdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ingroup != null" >
+        ingroup = #{record.ingroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recoverstatus != null" >
+        recoverstatus = #{record.recoverstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backups != null" >
+        backups = #{record.backups,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operationtime != null" >
+        operationtime = #{record.operationtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null" >
+        operator = #{record.operator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_transfer
+    set id = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      usedname = #{record.usedname,jdbcType=VARCHAR},
+      idnumber = #{record.idnumber,jdbcType=VARCHAR},
+      briefintroduction = #{record.briefintroduction,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      dateofbirth = #{record.dateofbirth,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      pic = #{record.pic,jdbcType=VARCHAR},
+      degreestatus = #{record.degreestatus,jdbcType=VARCHAR},
+      degree = #{record.degree,jdbcType=VARCHAR},
+      joiningpartydata = #{record.joiningpartydata,jdbcType=VARCHAR},
+      job = #{record.job,jdbcType=VARCHAR},
+      promise = #{record.promise,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      branch_id = #{record.branchId,jdbcType=VARCHAR},
+      vanguard_id = #{record.vanguardId,jdbcType=VARCHAR},
+      nationality = #{record.nationality,jdbcType=VARCHAR},
+      nativeplace = #{record.nativeplace,jdbcType=VARCHAR},
+      medicalinsurance = #{record.medicalinsurance,jdbcType=VARCHAR},
+      oldinsurance = #{record.oldinsurance,jdbcType=VARCHAR},
+      maritalstatus = #{record.maritalstatus,jdbcType=VARCHAR},
+      positivetime = #{record.positivetime,jdbcType=VARCHAR},
+      workdate = #{record.workdate,jdbcType=VARCHAR},
+      beginbranch = #{record.beginbranch,jdbcType=VARCHAR},
+      changedbranch = #{record.changedbranch,jdbcType=VARCHAR},
+      referrer = #{record.referrer,jdbcType=VARCHAR},
+      joinedbranchdate = #{record.joinedbranchdate,jdbcType=VARCHAR},
+      major = #{record.major,jdbcType=VARCHAR},
+      ocupertino = #{record.ocupertino,jdbcType=VARCHAR},
+      relationship = #{record.relationship,jdbcType=VARCHAR},
+      domicileplace = #{record.domicileplace,jdbcType=VARCHAR},
+      nowadd = #{record.nowadd,jdbcType=VARCHAR},
+      wechat = #{record.wechat,jdbcType=VARCHAR},
+      outofdate = #{record.outofdate,jdbcType=VARCHAR},
+      outofplace = #{record.outofplace,jdbcType=VARCHAR},
+      outoftype = #{record.outoftype,jdbcType=VARCHAR},
+      outofreason = #{record.outofreason,jdbcType=VARCHAR},
+      avtivenum = #{record.avtivenum,jdbcType=VARCHAR},
+      contactstatus = #{record.contactstatus,jdbcType=VARCHAR},
+      outcontect = #{record.outcontect,jdbcType=VARCHAR},
+      incontect = #{record.incontect,jdbcType=VARCHAR},
+      inunit = #{record.inunit,jdbcType=VARCHAR},
+      lostdate = #{record.lostdate,jdbcType=VARCHAR},
+      abroaddate = #{record.abroaddate,jdbcType=VARCHAR},
+      abroadreason = #{record.abroadreason,jdbcType=VARCHAR},
+      abroadstatus = #{record.abroadstatus,jdbcType=VARCHAR},
+      partyship = #{record.partyship,jdbcType=VARCHAR},
+      backdate = #{record.backdate,jdbcType=VARCHAR},
+      ingroup = #{record.ingroup,jdbcType=VARCHAR},
+      recoverstatus = #{record.recoverstatus,jdbcType=VARCHAR},
+      backups = #{record.backups,jdbcType=VARCHAR},
+      operationtime = #{record.operationtime,jdbcType=VARCHAR},
+      operator = #{record.operator,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pb.partybuilding.domain.TTransfer" >
+    update t_transfer
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="usedname != null" >
+        usedname = #{usedname,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null" >
+        idnumber = #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="briefintroduction != null" >
+        briefintroduction = #{briefintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateofbirth != null" >
+        dateofbirth = #{dateofbirth,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="degreestatus != null" >
+        degreestatus = #{degreestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="joiningpartydata != null" >
+        joiningpartydata = #{joiningpartydata,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="promise != null" >
+        promise = #{promise,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="branchId != null" >
+        branch_id = #{branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="vanguardId != null" >
+        vanguard_id = #{vanguardId,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        nativeplace = #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalinsurance != null" >
+        medicalinsurance = #{medicalinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="oldinsurance != null" >
+        oldinsurance = #{oldinsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalstatus != null" >
+        maritalstatus = #{maritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="positivetime != null" >
+        positivetime = #{positivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="workdate != null" >
+        workdate = #{workdate,jdbcType=VARCHAR},
+      </if>
+      <if test="beginbranch != null" >
+        beginbranch = #{beginbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="changedbranch != null" >
+        changedbranch = #{changedbranch,jdbcType=VARCHAR},
+      </if>
+      <if test="referrer != null" >
+        referrer = #{referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="joinedbranchdate != null" >
+        joinedbranchdate = #{joinedbranchdate,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="ocupertino != null" >
+        ocupertino = #{ocupertino,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null" >
+        relationship = #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="domicileplace != null" >
+        domicileplace = #{domicileplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nowadd != null" >
+        nowadd = #{nowadd,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="outofdate != null" >
+        outofdate = #{outofdate,jdbcType=VARCHAR},
+      </if>
+      <if test="outofplace != null" >
+        outofplace = #{outofplace,jdbcType=VARCHAR},
+      </if>
+      <if test="outoftype != null" >
+        outoftype = #{outoftype,jdbcType=VARCHAR},
+      </if>
+      <if test="outofreason != null" >
+        outofreason = #{outofreason,jdbcType=VARCHAR},
+      </if>
+      <if test="avtivenum != null" >
+        avtivenum = #{avtivenum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactstatus != null" >
+        contactstatus = #{contactstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outcontect != null" >
+        outcontect = #{outcontect,jdbcType=VARCHAR},
+      </if>
+      <if test="incontect != null" >
+        incontect = #{incontect,jdbcType=VARCHAR},
+      </if>
+      <if test="inunit != null" >
+        inunit = #{inunit,jdbcType=VARCHAR},
+      </if>
+      <if test="lostdate != null" >
+        lostdate = #{lostdate,jdbcType=VARCHAR},
+      </if>
+      <if test="abroaddate != null" >
+        abroaddate = #{abroaddate,jdbcType=VARCHAR},
+      </if>
+      <if test="abroadreason != null" >
+        abroadreason = #{abroadreason,jdbcType=VARCHAR},
+      </if>
+      <if test="abroadstatus != null" >
+        abroadstatus = #{abroadstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="partyship != null" >
+        partyship = #{partyship,jdbcType=VARCHAR},
+      </if>
+      <if test="backdate != null" >
+        backdate = #{backdate,jdbcType=VARCHAR},
+      </if>
+      <if test="ingroup != null" >
+        ingroup = #{ingroup,jdbcType=VARCHAR},
+      </if>
+      <if test="recoverstatus != null" >
+        recoverstatus = #{recoverstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="backups != null" >
+        backups = #{backups,jdbcType=VARCHAR},
+      </if>
+      <if test="operationtime != null" >
+        operationtime = #{operationtime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pb.partybuilding.domain.TTransfer" >
+    update t_transfer
+    set name = #{name,jdbcType=VARCHAR},
+      usedname = #{usedname,jdbcType=VARCHAR},
+      idnumber = #{idnumber,jdbcType=VARCHAR},
+      briefintroduction = #{briefintroduction,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      dateofbirth = #{dateofbirth,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      degreestatus = #{degreestatus,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=VARCHAR},
+      joiningpartydata = #{joiningpartydata,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      promise = #{promise,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      branch_id = #{branchId,jdbcType=VARCHAR},
+      vanguard_id = #{vanguardId,jdbcType=VARCHAR},
+      nationality = #{nationality,jdbcType=VARCHAR},
+      nativeplace = #{nativeplace,jdbcType=VARCHAR},
+      medicalinsurance = #{medicalinsurance,jdbcType=VARCHAR},
+      oldinsurance = #{oldinsurance,jdbcType=VARCHAR},
+      maritalstatus = #{maritalstatus,jdbcType=VARCHAR},
+      positivetime = #{positivetime,jdbcType=VARCHAR},
+      workdate = #{workdate,jdbcType=VARCHAR},
+      beginbranch = #{beginbranch,jdbcType=VARCHAR},
+      changedbranch = #{changedbranch,jdbcType=VARCHAR},
+      referrer = #{referrer,jdbcType=VARCHAR},
+      joinedbranchdate = #{joinedbranchdate,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      ocupertino = #{ocupertino,jdbcType=VARCHAR},
+      relationship = #{relationship,jdbcType=VARCHAR},
+      domicileplace = #{domicileplace,jdbcType=VARCHAR},
+      nowadd = #{nowadd,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      outofdate = #{outofdate,jdbcType=VARCHAR},
+      outofplace = #{outofplace,jdbcType=VARCHAR},
+      outoftype = #{outoftype,jdbcType=VARCHAR},
+      outofreason = #{outofreason,jdbcType=VARCHAR},
+      avtivenum = #{avtivenum,jdbcType=VARCHAR},
+      contactstatus = #{contactstatus,jdbcType=VARCHAR},
+      outcontect = #{outcontect,jdbcType=VARCHAR},
+      incontect = #{incontect,jdbcType=VARCHAR},
+      inunit = #{inunit,jdbcType=VARCHAR},
+      lostdate = #{lostdate,jdbcType=VARCHAR},
+      abroaddate = #{abroaddate,jdbcType=VARCHAR},
+      abroadreason = #{abroadreason,jdbcType=VARCHAR},
+      abroadstatus = #{abroadstatus,jdbcType=VARCHAR},
+      partyship = #{partyship,jdbcType=VARCHAR},
+      backdate = #{backdate,jdbcType=VARCHAR},
+      ingroup = #{ingroup,jdbcType=VARCHAR},
+      recoverstatus = #{recoverstatus,jdbcType=VARCHAR},
+      backups = #{backups,jdbcType=VARCHAR},
+      operationtime = #{operationtime,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
